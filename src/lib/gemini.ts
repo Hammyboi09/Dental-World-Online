@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { clinicInfo } from './clinicInfo';
 import { teamInfo } from './teamInfo';
 
-const genAI = new GoogleGenerativeAI('AIzaSyDxUY-iCiIFeAqnayZKLW_aEbx8nrVwhU0');
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
 const SYSTEM_PROMPT = `
 You are Flossy, a knowledgeable and friendly dental assistant chatbot for Dental World, a chain of dental clinics in Delhi.
