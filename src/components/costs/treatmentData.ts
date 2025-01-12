@@ -1,0 +1,184 @@
+import type { Treatment } from './types';
+
+export const treatments: Treatment[] = [
+  {
+    id: 1,
+    name: "Basal Implants",
+    priceRange: "₹80,000 - ₹1,20,000",
+    features: [
+      "Complete procedure",
+      "Premium quality implants",
+      "Lifetime warranty",
+      "Follow-up care"
+    ],
+    image: "public/elements/costs/1.png"
+  },
+  {
+    id: 2,
+    name: "Restoring Missing Teeth",
+    priceRange: "₹35,000 - ₹60,000",
+    features: [
+      "Custom-made prosthetics",
+      "Natural appearance",
+      "Comfortable fit",
+      "Durable materials"
+    ],
+    image: "public/elements/costs/2.png"
+  },
+  {
+    id: 3,
+    name: "Dental Implants",
+    priceRange: "₹45,000 - ₹80,000",
+    features: [
+      "Permanent solution",
+      "Natural look and feel",
+      "Bone preservation",
+      "Long-lasting results"
+    ],
+    image: "public/elements/costs/3.png"
+  },
+  {
+    id: 4,
+    name: "Microscopic Dentistry",
+    priceRange: "₹15,000 - ₹40,000",
+    features: [
+      "High precision treatment",
+      "Enhanced visualization",
+      "Minimally invasive",
+      "Better outcomes"
+    ],
+    image: "public/elements/costs/4.png"
+  },
+  {
+    id: 5,
+    name: "Root Canal Treatment",
+    priceRange: "₹8,000 - ₹15,000",
+    features: [
+      "Pain-free procedure",
+      "Advanced techniques",
+      "Same-day treatment",
+      "Long-term solution"
+    ],
+    image: "public/elements/costs/5.png"
+  },
+  {
+    id: 6,
+    name: "Pediatric Dentistry",
+    priceRange: "₹1,000 - ₹10,000",
+    features: [
+      "Child-friendly environment",
+      "Gentle care",
+      "Preventive focus",
+      "Educational approach"
+    ],
+    image: "public/elements/costs/6.png"
+  },
+  {
+    id: 7,
+    name: "Cosmetic Dentistry",
+    priceRange: "₹20,000 - ₹1,50,000",
+    features: [
+      "Smile makeover",
+      "Custom treatment plan",
+      "Latest techniques",
+      "Natural results"
+    ],
+    image: "public/elements/costs/7.png"
+  },
+  {
+    id: 8,
+    name: "Oral Surgery",
+    priceRange: "₹10,000 - ₹50,000",
+    features: [
+      "Expert surgeons",
+      "Modern facilities",
+      "Comprehensive care",
+      "Quick recovery"
+    ],
+    image: "public/elements/costs/8.png"
+  },
+  {
+    id: 9,
+    name: "General Treatments",
+    priceRange: "₹500 - ₹5,000",
+    features: [
+      "Regular check-ups",
+      "Preventive care",
+      "Basic procedures",
+      "Oral hygiene"
+    ],
+    image: "public/elements/costs/9.png"
+  },
+  {
+    id: 10,
+    name: "Periodontics/Gums Treatments",
+    priceRange: "₹5,000 - ₹30,000",
+    features: [
+      "Gum disease treatment",
+      "Deep cleaning",
+      "Maintenance care",
+      "Prevention focus"
+    ],
+    image: "public/elements/costs/10.png"
+  },
+  {
+    id: 11,
+    name: "Oral Concerns",
+    priceRange: "₹1,000 - ₹8,000",
+    features: [
+      "Consultation",
+      "Diagnosis",
+      "Treatment planning",
+      "Follow-up care"
+    ],
+    image: "public/elements/costs/11.png"
+  },
+  {
+    id: 12,
+    name: "Microscope-Assisted Root Canals",
+    priceRange: "₹12,000 - ₹25,000",
+    features: [
+      "High magnification",
+      "Precise treatment",
+      "Better success rate",
+      "Advanced technology"
+    ],
+    image: "public/elements/costs/12.png"
+  },
+  {
+    id: 13,
+    name: "Re-Root Canal Procedure",
+    priceRange: "₹15,000 - ₹30,000",
+    features: [
+      "Complex cases",
+      "Advanced techniques",
+      "Problem resolution",
+      "Long-term success"
+    ],
+    image: "public/elements/costs/13.png"
+  },
+  {
+    id: 14,
+    name: "Orthodontic/Braces Treatment",
+    priceRange: "₹50,000 - ₹1,50,000",
+    features: [
+      "Custom treatment plan",
+      "Regular adjustments",
+      "Various options",
+      "Perfect alignment"
+    ],
+    image: "public/elements/costs/14.png"
+  },
+  {
+    id: 15,
+    name: "Full Mouth Rehabilitation",
+    priceRange: "₹2,00,000 - ₹5,00,000",
+    features: [
+      "Comprehensive treatment",
+      "Multiple procedures",
+      "Customized plan",
+      "Complete restoration"
+    ],
+    image: "public/elements/costs/15.png"
+  }
+];

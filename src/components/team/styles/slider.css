@@ -1,0 +1,24 @@
+/* Remove the gradient masks */
+.team-slider-container::before,
+.team-slider-container::after {
+  display: none;
+}
+
+.team-slider-container {
+  max-width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.team-track {
+  display: flex;
+  gap: 2rem;
+  padding: 0 1rem;
+  width: fit-content;
+}
+
+.team-track-item {
+  flex: 0 0 350px; /* Fixed width to match card width */
+  height: 480px; /* Fixed height to match card height */
+}

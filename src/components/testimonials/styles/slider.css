@@ -1,0 +1,38 @@
+@keyframes slideAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.testimonial-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 2rem;
+  animation: slideAnimation 45s linear infinite;
+  width: fit-content;
+  padding: 1rem;
+}
+
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
+.testimonial-slide {
+  flex: 0 0 auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Remove gradient masks */
+.testimonial-container::before,
+.testimonial-container::after {
+  display: none;
+}
