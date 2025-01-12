@@ -11,7 +11,7 @@ export const treatments: Treatment[] = [
       "Lifetime warranty",
       "Follow-up care"
     ],
-    image: "public/elements/costs/1.png"
+    image: "/elements/costs/basal-implants.png"
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const treatments: Treatment[] = [
       "Comfortable fit",
       "Durable materials"
     ],
-    image: "public/elements/costs/2.png"
+    image: "elements/costs/restoring-missing-teeth.png"
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ export const treatments: Treatment[] = [
       "Bone preservation",
       "Long-lasting results"
     ],
-    image: "public/elements/costs/3.png"
+    image: "elements/costs/dental-implants.png"
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ export const treatments: Treatment[] = [
       "Minimally invasive",
       "Better outcomes"
     ],
-    image: "public/elements/costs/4.png"
+    image: "elements/costs/microscopic-dentistry.png"
   },
   {
     id: 5,
@@ -59,7 +59,7 @@ export const treatments: Treatment[] = [
       "Same-day treatment",
       "Long-term solution"
     ],
-    image: "public/elements/costs/5.png"
+    image: "elements/costs/root-canal-treatment.png"
   },
   {
     id: 6,
