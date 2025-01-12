@@ -2,8 +2,6 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { clinicInfo } from './clinicInfo';
 import { teamInfo } from './teamInfo';
 
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-
 const SYSTEM_PROMPT = `
 You are Flossy, a knowledgeable and friendly dental assistant chatbot for Dental World, a chain of dental clinics in Delhi.
 
@@ -26,6 +24,14 @@ Remember: You represent Dental World. Be helpful and approachable while maintain
 
 export async function getChatResponse(message: string): Promise<string> {
   try {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    
+    if (!apiKey) {
+      console.error('Gemini API key not found');
+      return 'I apologize, but I am currently unable to process requests. Please try again later or contact our clinic directly.';
+    }
+
+    const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
     
     const prompt = `${SYSTEM_PROMPT}\n\nUser message: ${message}`;
@@ -46,6 +52,6 @@ export async function getChatResponse(message: string): Promise<string> {
     return text;
   } catch (error) {
     console.error('Error getting chat response:', error);
-    return 'I apologize, but I am having trouble processing your request at the moment. Please try using one of our commands like /help, /about, or /contact for assistance.';
+    return 'I apologize, but I am having trouble connecting to my services. Please try refreshing the page or contact our clinic directly for assistance.';
   }
 }
