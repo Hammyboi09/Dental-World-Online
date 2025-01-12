@@ -71,7 +71,7 @@ export const treatments: Treatment[] = [
       "Preventive focus",
       "Educational approach"
     ],
-    image: "public/elements/costs/6.png"
+    image: "elements/costs/pediatric-dentistry.png"
   },
   {
     id: 7,
@@ -83,7 +83,7 @@ export const treatments: Treatment[] = [
       "Latest techniques",
       "Natural results"
     ],
-    image: "public/elements/costs/7.png"
+    image: "elements/costs/cosmetic-dentistry.png"
   },
   {
     id: 8,
@@ -95,7 +95,7 @@ export const treatments: Treatment[] = [
       "Comprehensive care",
       "Quick recovery"
     ],
-    image: "public/elements/costs/8.png"
+    image: "elements/costs/oral-surgery.png"
   },
   {
     id: 9,
@@ -107,7 +107,7 @@ export const treatments: Treatment[] = [
       "Basic procedures",
       "Oral hygiene"
     ],
-    image: "public/elements/costs/9.png"
+    image: "elements/costs/general-treatments.png"
   },
   {
     id: 10,
@@ -119,7 +119,7 @@ export const treatments: Treatment[] = [
       "Maintenance care",
       "Prevention focus"
     ],
-    image: "public/elements/costs/10.png"
+    image: "elements/costs/gums-treatments.png"
   },
   {
     id: 11,
@@ -131,7 +131,7 @@ export const treatments: Treatment[] = [
       "Treatment planning",
       "Follow-up care"
     ],
-    image: "public/elements/costs/11.png"
+    image: "elements/costs/oral-concerns.png"
   },
   {
     id: 12,
@@ -143,7 +143,7 @@ export const treatments: Treatment[] = [
       "Better success rate",
       "Advanced technology"
     ],
-    image: "public/elements/costs/12.png"
+    image: "elements/costs/microscope-assisted-root-canals.png"
   },
   {
     id: 13,
@@ -155,7 +155,7 @@ export const treatments: Treatment[] = [
       "Problem resolution",
       "Long-term success"
     ],
-    image: "public/elements/costs/13.png"
+    image: "elements/costs/re-root-canal-procedure.png"
   },
   {
     id: 14,
@@ -167,7 +167,7 @@ export const treatments: Treatment[] = [
       "Various options",
       "Perfect alignment"
     ],
-    image: "public/elements/costs/14.png"
+    image: "elements/costs/braces-treatment.png"
   },
   {
     id: 15,
@@ -179,6 +179,6 @@ export const treatments: Treatment[] = [
       "Customized plan",
       "Complete restoration"
     ],
-    image: "public/elements/costs/15.png"
+    image: "elements/costs/full-mouth-rehabilitation.png"
   }
 ];
