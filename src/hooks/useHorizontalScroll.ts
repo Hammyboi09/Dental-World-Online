@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSwipeGesture } from './useSwipeGesture';
-import { useAutoSwipe } from './useAutoSwipe';
 
 export function useHorizontalScroll(totalSlides: number) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -21,14 +20,6 @@ export function useHorizontalScroll(totalSlides: number) {
     setCurrentSlide(index);
     setTimeout(() => setIsAnimating(false), 1000);
   }, [isAnimating, totalSlides]);
-
-  const { pauseAutoSwipe, resumeAutoSwipe } = useAutoSwipe({
-    currentSlide,
-    totalSlides,
-    interval: 5000,
-    isAnimating,
-    onSlideChange: goToSlide
-  });
 
   useEffect(() => {
     const handleTouchMove = (e: TouchEvent) => {
@@ -57,41 +48,21 @@ export function useHorizontalScroll(totalSlides: number) {
 
     const handleTouchEnd = () => {
       setSwipeProgress(0);
-      resumeAutoSwipe();
     };
 
-    const handleTouchStart = (e: TouchEvent) => {
-      pauseAutoSwipe();
-      handleTouchStart(e);
-    };
-
-    window.addEventListener('touchstart', handleTouchStart, { passive: false });
     window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchend', handleTouchEnd);
 
     return () => {
-      window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [
-    currentSlide,
-    isAnimating,
-    totalSlides,
-    goToSlide,
-    handleTouchStart,
-    calculateSwipeProgress,
-    determineSwipeDirection,
-    pauseAutoSwipe,
-    resumeAutoSwipe
-  ]);
+  }, [currentSlide, isAnimating, totalSlides, goToSlide, calculateSwipeProgress, determineSwipeDirection]);
 
   return {
     currentSlide,
     isAnimating,
     goToSlide,
-    swipeProgress,
-    pauseAutoSwipe,
-    resumeAutoSwipe
+    swipeProgress
   };
 }

@@ -13,13 +13,13 @@ export function TestimonialCard({ testimonial, onClick }: TestimonialCardProps) 
     <motion.div
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="bg-black/40 backdrop-blur-md rounded-[32px] overflow-hidden shadow-lg w-[380px] h-[480px] 
-                cursor-pointer border border-white/20 hover:border-white/30
-                hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-300
-                relative"
+className="bg-black/40 backdrop-blur-md rounded-xl overflow-hidden shadow-lg w-[350px] h-[450px] 
+          cursor-pointer border border-white/20 hover:border-white/30
+          hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-300
+          relative mx-4 my-4" // Added mx-2 my-2 for spacing
       onClick={onClick}
     >
-      <div className="h-72 relative overflow-hidden">
+      <div className="h-64 relative overflow-hidden">
         <img 
           src={testimonial.media} 
           alt={testimonial.name}

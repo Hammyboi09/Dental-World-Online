@@ -7,7 +7,7 @@ export function FloatingChatbot() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-12 right-6 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -30,9 +30,9 @@ export function FloatingChatbot() {
                  transition-shadow duration-300"
       >
         {isOpen ? (
-          <X className="w-6 h-6 text-white" />
+          <X className="w-10 h-10 text-white" />
         ) : (
-          <MessageCircle className="w-6 h-6 text-white" />
+          <MessageCircle className="w-10 h-10 text-white" />
         )}
       </motion.button>
     </div>

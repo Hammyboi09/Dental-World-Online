@@ -18,13 +18,15 @@ export function NavigationButton({ direction, onClick, disabled }: NavigationBut
       onClick={onClick}
       disabled={disabled}
       className={`
-        p-1.5 rounded-full bg-white/10 backdrop-blur-sm
+        p-2.5 rounded-full bg-white/20 backdrop-blur-sm
         disabled:opacity-30 disabled:cursor-not-allowed
         transition-colors duration-300
-        hover:bg-white/20
+        hover:bg-white/30
+        shadow-lg
+        border border-white/30
       `}
     >
-      <Icon className="w-3 h-3 text-white" />
+      <Icon className="w-5 h-5 text-white" />
     </motion.button>
   );
 }

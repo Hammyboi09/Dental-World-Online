@@ -10,54 +10,40 @@ export type CommandType = {
 
 export const chatCommands: CommandType[] = [
   {
-    command: '/help',
-    description: 'Show available commands',
+    command: 'Help',
+    description: '',
     action: () => {
       return `Available commands:
 /about - Learn about Dental World
 /team - Meet our dental specialists
 /contact - Get clinic contact information
 /locations - Show clinic locations
-/hours - Show clinic working hours
-/services - List available dental services`;
+/hours - Show clinic working hours`;
     }
   },
   {
-    command: '/about',
-    description: 'Learn about Dental World',
+    command: 'About Us',
+    description: '',
     action: () => clinicInfo.getAboutInfo()
   },
   {
-    command: '/team',
-    description: 'Meet our dental specialists',
+    command: 'Our Team',
+    description: '',
     action: () => teamInfo.getTeamList()
   },
   {
-    command: '/doctor',
-    description: 'Get information about a specific doctor',
-    action: (name?: string) => {
-      if (!name) return 'Please provide a doctor name. Use /team to see the list of doctors.';
-      return teamInfo.getDoctorInfo(name);
-    }
-  },
-  {
-    command: '/contact',
-    description: 'Get clinic contact information',
+    command: 'Contact Us',
+    description: '',
     action: () => clinicInfo.getContactInfo()
   },
   {
-    command: '/locations',
-    description: 'Show clinic locations',
+    command: 'Locations',
+    description: '',
     action: () => clinicInfo.getLocations()
   },
   {
-    command: '/hours',
-    description: 'Show clinic working hours',
+    command: 'Working Hours',
+    description: '',
     action: () => clinicInfo.getWorkingHours()
   },
-  {
-    command: '/services',
-    description: 'List available dental services',
-    action: () => clinicInfo.getServices()
-  }
 ];

@@ -177,7 +177,7 @@ export const testimonialData: Testimonial[] = [
     location: "Delhi",
     testimonial: "From consultation to aftercare, the entire experience was seamless. The results are better than I could have imagined.",
     type: "image",
-    media: "public/elements/testimonials/patient-photos",
+    media: "elements/testimonials/patient-photos/patient-18.png",
     rating: 5,
     date: "June 2023"
   },

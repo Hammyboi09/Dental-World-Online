@@ -91,7 +91,7 @@ export function ChatWindow({ onClose }: ChatWindowProps) {
             <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
               <Bot className="w-5 h-5 text-white" />
             </div>
-            <h3 className="text-white font-semibold">Flossy - Dental Assistant</h3>
+            <h3 className="text-white font-semibold">Flossy - Your Dental Assistant</h3>
           </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
