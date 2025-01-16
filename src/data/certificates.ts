@@ -15,12 +15,12 @@ export const certificates = [
     id: 3,
     name: "Certificate of Implantology (Spain)",
     about: "Advanced training and certification in modern implantology techniques from leading Spanish dental institutions.",
-    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80"
+    image: "elements/certifications/certificate-of-implantology-spain.png"
   },
   {
     id: 4,
     name: "Academy of Oral Implantology",
     about: "Recognition of commitment to excellence in implant dentistry and patient care standards.",
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80"
+    image: "elements/certifications/academy-of-oral-implantogy.jpeg"
   }
 ];

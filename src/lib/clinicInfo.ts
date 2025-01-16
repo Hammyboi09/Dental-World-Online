@@ -26,7 +26,7 @@ Need to book an appointment? Use /book for booking information.
 Our Clinics:
 
 1. Rajouri Garden Clinic
-   A-132, 1st Floor, Block A,
+   A-132, Block A,
    Rajouri Garden, New Delhi - 110027
 
 2. Punjabi Bagh Clinic

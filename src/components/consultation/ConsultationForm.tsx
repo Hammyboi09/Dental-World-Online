@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, ArrowLeft, ArrowRight, Check } from 'lucide-react';
+import { Camera, Upload, ArrowLeft, ArrowRight, Check, XCircle } from 'lucide-react';
 import { formOptions } from './formOptions';
 import { PhotoUpload } from './PhotoUpload';
 import { AnalysisResults } from './AnalysisResults';
@@ -40,6 +40,75 @@ export function ConsultationForm() {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1);
     }
+  };
+
+  const handleDentalHistoryChange = (value: string, checked: boolean) => {
+    setFormData(prev => {
+      let newDentalHistory = [...prev.dentalHistory];
+      
+      if (value === 'None of the Above') {
+        // If "None of the Above" is being checked, clear all other selections
+        if (checked) {
+          newDentalHistory = ['None of the Above'];
+        } else {
+          newDentalHistory = [];
+        }
+      } else {
+        // If any other option is being checked
+        if (checked) {
+          // Remove "None of the Above" if it exists
+          newDentalHistory = newDentalHistory.filter(item => item !== 'None of the Above');
+          // Add the new selection
+          newDentalHistory.push(value);
+        } else {
+          // Remove the unchecked option
+          newDentalHistory = newDentalHistory.filter(item => item !== value);
+        }
+      }
+      
+      return {
+        ...prev,
+        dentalHistory: newDentalHistory
+      };
+    });
+  };
+
+  const handleLifestyleFactorsChange = (value: string, checked: boolean) => {
+    setFormData(prev => {
+      let newLifestyleFactors = [...prev.lifestyleFactors];
+      
+      if (value === 'None of the Above') {
+        // If "None of the Above" is being checked, clear all other selections
+        if (checked) {
+          newLifestyleFactors = ['None of the Above'];
+        } else {
+          newLifestyleFactors = [];
+        }
+      } else {
+        // If any other option is being checked
+        if (checked) {
+          // Remove "None of the Above" if it exists
+          newLifestyleFactors = newLifestyleFactors.filter(item => item !== 'None of the Above');
+          // Add the new selection
+          newLifestyleFactors.push(value);
+        } else {
+          // Remove the unchecked option
+          newLifestyleFactors = newLifestyleFactors.filter(item => item !== value);
+        }
+      }
+      
+      return {
+        ...prev,
+        lifestyleFactors: newLifestyleFactors
+      };
+    });
+  };
+
+  const handleUnSelectAll = (field: 'primaryConcerns' | 'dentalHistory' | 'lifestyleFactors') => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: []
+    }));
   };
 
   const isStepComplete = () => {
@@ -155,6 +224,20 @@ export function ConsultationForm() {
                   </label>
                 ))}
               </div>
+
+              {/* Un-Select All Button */}
+              <div className="mt-6 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => handleUnSelectAll('primaryConcerns')}
+                  className="flex items-center px-4 py-2 rounded-lg
+                           bg-red-600 text-white hover:bg-red-700
+                           transition-all duration-300 border border-red-500"
+                >
+                  <XCircle className="w-5 h-5 mr-2" />
+                  Un-Select All
+                </button>
+              </div>
             </motion.div>
           )}
 
@@ -182,19 +265,13 @@ export function ConsultationForm() {
                         ? 'border-violet-500 bg-violet-500/10'
                         : 'border-white/10 hover:border-white/30'
                       }
+                      ${item === 'None of the Above' ? 'col-span-full' : ''}
                     `}
                   >
                     <input
                       type="checkbox"
                       checked={formData.dentalHistory.includes(item)}
-                      onChange={(e) => {
-                        setFormData(prev => ({
-                          ...prev,
-                          dentalHistory: e.target.checked
-                            ? [...prev.dentalHistory, item]
-                            : prev.dentalHistory.filter(h => h !== item)
-                        }));
-                      }}
+                      onChange={(e) => handleDentalHistoryChange(item, e.target.checked)}
                       className="sr-only"
                     />
                     <Check 
@@ -209,6 +286,20 @@ export function ConsultationForm() {
                     <span className="text-white">{item}</span>
                   </label>
                 ))}
+              </div>
+
+              {/* Un-Select All Button */}
+              <div className="mt-6 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => handleUnSelectAll('dentalHistory')}
+                  className="flex items-center px-4 py-2 rounded-lg
+                           bg-red-600 text-white hover:bg-red-700
+                           transition-all duration-300 border border-red-500"
+                >
+                  <XCircle className="w-5 h-5 mr-2" />
+                  Un-Select All
+                </button>
               </div>
             </motion.div>
           )}
@@ -292,19 +383,13 @@ export function ConsultationForm() {
                         ? 'border-violet-500 bg-violet-500/10'
                         : 'border-white/10 hover:border-white/30'
                       }
+                      ${factor === 'None of the Above' ? 'col-span-full' : ''}
                     `}
                   >
                     <input
                       type="checkbox"
                       checked={formData.lifestyleFactors.includes(factor)}
-                      onChange={(e) => {
-                        setFormData(prev => ({
-                          ...prev,
-                          lifestyleFactors: e.target.checked
-                            ? [...prev.lifestyleFactors, factor]
-                            : prev.lifestyleFactors.filter(f => f !== factor)
-                        }));
-                      }}
+                      onChange={(e) => handleLifestyleFactorsChange(factor, e.target.checked)}
                       className="sr-only"
                     />
                     <Check 
@@ -319,6 +404,20 @@ export function ConsultationForm() {
                     <span className="text-white">{factor}</span>
                   </label>
                 ))}
+              </div>
+
+              {/* Un-Select All Button */}
+              <div className="mt-6 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => handleUnSelectAll('lifestyleFactors')}
+                  className="flex items-center px-4 py-2 rounded-lg
+                           bg-red-600 text-white hover:bg-red-700
+                           transition-all duration-300 border border-red-500"
+                >
+                  <XCircle className="w-5 h-5 mr-2" />
+                  Un-Select All
+                </button>
               </div>
             </motion.div>
           )}

@@ -1,29 +1,8 @@
 .treatment-slider {
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   padding: 2rem 0;
-}
-
-.treatment-slider::before,
-.treatment-slider::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.treatment-slider::before {
-  left: 0;
-  background: linear-gradient(to right, rgb(17, 24, 39), transparent);
-}
-
-.treatment-slider::after {
-  right: 0;
-  background: linear-gradient(to left, rgb(17, 24, 39), transparent);
 }
 
 .treatment-track {

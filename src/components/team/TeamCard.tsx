@@ -15,7 +15,7 @@ export function TeamCard({ member, onClick }: TeamCardProps) {
       onClick={onClick}
       className="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg cursor-pointer
                 border border-white/20 hover:bg-white/20 transition-all duration-300
-                w-[350px] h-[480px] flex flex-col"
+                w-[350px] h-[480px] flex flex-col" // Fixed width to 350px
     >
       {/* Image Container - Fixed height */}
       <div className="h-[280px] relative overflow-hidden">

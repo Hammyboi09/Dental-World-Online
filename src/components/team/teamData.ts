@@ -55,11 +55,22 @@ export const teamMembers = [
   },
   {
     id: 7,
-    name: "Dr. Pratik Aggarwal",
-    designation: "Orthodontist",
-    qualification: "BDS, MDS (Subharti Dental College)",
-    qualificationFull: "BDS (Subharti Dental College), MDS (Subharti Dental College)",
-    about: "Dr. Pratik Aggarwal is a dynamic and skilled orthodontist serving as a consultant at SRG Hospital, Max Superspeciality Hospital, and Navjeevan Hospital in New Delhi. He frequently attends national and international conferences to stay updated with the latest advancements in orthodontics.",
-    image: "/elements/team/dr-prateek-agaarwal.png"
-  }
+    name: "Dr. XYZ",
+    designation: "XYZ",
+    qualification: "BDS, MDS (ABC College)",
+    qualificationFull: "BDS (ABC College), MDS (ABC College)",
+    about: "Dr. XYZ is a dynamic and skilled XYZ serving as a consultant at QWE Hospital, QWE Superspeciality Hospital, and poas Hospital in New Delhi. He frequently attends national and international conferences to stay updated with the latest advancements in XYZ.",
+    image: "/elements/team/dr-XYZ.png"
+  },
+  {
+    id: 8,
+    name: 'Dr. XYZ',
+    designation: 'Senior Consultant',
+    qualification: 'BDS, MDS (Oral Surgery)',
+    qualificationFull: 'BDS, MDS in Oral and Maxillofacial Surgery with over 30 years of experience in dental practice and surgery.',
+    about: 'Dr. XYZ is a highly experienced oral surgeon who has been practicing dentistry for over three decades. After completing his BDS and MDS in Oral Surgery, he established the Vasant Vihar clinic and has been instrumental in developing advanced surgical protocols. His expertise in complex oral surgeries and dental implants has helped thousands of patients achieve better oral health.',
+    image: '/elements/team/dr-XYZ.png'
+}
+
+
 ];

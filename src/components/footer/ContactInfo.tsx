@@ -25,7 +25,7 @@ export function ContactInfo() {
           <div>
             <p className="mb-2">
               <strong>Rajouri Garden's Clinic:</strong><br />
-              A-132, 1st Floor, Block A,<br />
+              A-132, Block A,<br />
               Rajouri Garden,<br />
               New Delhi - 110027
             </p>

@@ -16,7 +16,8 @@ export const formOptions = {
     'Braces/Orthodontic Treatment',
     'Gum Disease Treatment',
     'Tooth Extraction',
-    'Regular Cleanings'
+    'Regular Cleanings',
+    'None of the Above'
   ],
   
   oralHygiene: [
@@ -32,6 +33,7 @@ export const formOptions = {
     'Sugary Foods',
     'Teeth Grinding',
     'Contact Sports',
-    'Acidic Foods'
+    'Acidic Foods',
+    'None of the Above'
   ]
 } as const;

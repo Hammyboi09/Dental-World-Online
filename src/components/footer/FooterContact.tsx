@@ -32,7 +32,7 @@ export function FooterContact() {
           <div className="text-gray-400">
             <p className="mb-2">
               <strong className="text-gray-300">Rajouri Garden:</strong><br />
-              A-132, 1st Floor, Block A,<br />
+              A-132, Block A,<br />
               Rajouri Garden, New Delhi - 110027
             </p>
             <p>
