@@ -29,7 +29,7 @@ export function TreatmentCard({ treatment }: TreatmentCardProps) {
             {treatment.name}
           </h3>
           <a
-            href="tel:+911125193887"
+            href="tel:+919650044321"
             className="inline-flex items-center justify-center w-full px-4 py-2 rounded-lg
                      bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
                      text-white font-medium
