@@ -51,22 +51,26 @@ const galleryImages: Record<string, GalleryImage[]> = {
     { id: 34, src: "elements/gallery/Smile Transformations/metal_free-zirconia_crowns-smile_makeover.png", title: "Metal Free Zirconia Crowns" },
     { id: 35, src: "elements/gallery/Smile Transformations/orthodontic_treatment-ceramic_braces.png", title: "Orthodontic Treatment" },
     { id: 36, src: "elements/gallery/Smile Transformations/root-canal-treatment.png", title: "Root Canal Treatment" },
-    { id: 37, src: "Add-Relative-Path", title: "Orthodontic Case 2" },
-    { id: 38, src: "Add-Relative-Path", title: "Smile Makeover 1" },
-    { id: 39, src: "Add-Relative-Path", title: "Smile Makeover 2" },
-    { id: 40, src: "Add-Relative-Path", title: "Orthodontic Case 1" }
+    { id: 37, src: "elements/gallery/Smile Transformations/cosmetic_dentistry.png", title: "Cosmetic Dentistry" },
+    { id: 38, src: "elements/gallery/Smile Transformations/dental_bleaching.png", title: "Dental Bleaching" },
+    { id: 39, src: "elements/gallery/Smile Transformations/dental-bridges.png", title: "Dental Bridges" },
+    { id: 40, src: "elements/gallery/Smile Transformations/dental-veneers2.png", title: "Dental Veneers" },
+    { id: 41, src: "elements/gallery/Smile Transformations/dental-veneers3.png", title: "Dental Veneers" },
+    { id: 42, src: "elements/gallery/Smile Transformations/full_mouth_rehabilitation.png", title: "Full Mouth Rehabilitation" }
   ],
   team: [
-    { id: 41, src: "elements/gallery/Team Pics/4.png", title: "Team Meeting" },
-    { id: 42, src: "elements/gallery/Team Pics/2.png", title: "Staff Training" },
-    { id: 43, src: "elements/gallery/Team Pics/5.png", title: "Community Event" },
-    { id: 44, src: "elements/gallery/Team Pics/1.png", title: "Awards Ceremony" },
-    { id: 45, src: "elements/gallery/Team Pics/3.png", title: "Team Meeting" },
-    { id: 46, src: "Add-Relative-Path", title: "Staff Training" },
-    { id: 47, src: "Add-Relative-Path", title: "Community Event" },
-    { id: 48, src: "Add-Relative-Path", title: "Awards Ceremony" },
-    { id: 49, src: "Add-Relative-Path", title: "Community Event" },
-    { id: 50, src: "Add-Relative-Path", title: "Awards Ceremony" }
+    { id: 43, src: "elements/gallery/Team Pics/4.png", title: "" },
+    { id: 44, src: "elements/gallery/Team Pics/2.png", title: "" },
+    { id: 45, src: "elements/gallery/Team Pics/5.png", title: "" },
+    { id: 46, src: "elements/gallery/Team Pics/1.png", title: "" },
+    { id: 47, src: "elements/gallery/Team Pics/3.png", title: "" },
+    { id: 48, src: "elements/gallery/Team Pics/6.png", title: "" },
+    { id: 49, src: "elements/gallery/Team Pics/7.png", title: "" },
+    { id: 50, src: "elements/gallery/Team Pics/8.png", title: "" },
+    { id: 51, src: "elements/gallery/Team Pics/9.png", title: "" },
+    { id: 52, src: "elements/gallery/Team Pics/10.png", title: "" },
+    { id: 53, src: "elements/gallery/Team Pics/11.png", title: "" },
+    { id: 54, src: "elements/gallery/Team Pics/12.png", title: "" }
   ]
 };
 
