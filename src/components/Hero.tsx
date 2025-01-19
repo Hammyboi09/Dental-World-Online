@@ -21,7 +21,7 @@ export function Hero() {
             <img
               src="/elements/home/logo/main-logo.png"
               alt="Dental World Logo"
-              className="w-[3000px] h-[750px] -mt-48 object-contain transform hover:scale-105 transition-transform duration-300"
+              className="w-[3000px] h-[750px] -mt-48 object-contain transform hover:scale-125 transition-transform duration-300"
             />
           </motion.div>
 

@@ -4,15 +4,50 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes shimmer {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@layer base {
+  html {
+    @apply text-base scroll-smooth;
+  }
+
+  body {
+    @apply font-roboto antialiased text-gray-900 bg-white;
+  }
 }
 
-@keyframes pulse {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+@layer components {
+  .container-fluid {
+    @apply w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-12 sm:py-16 md:py-20 lg:py-24;
+  }
+
+  .heading-1 {
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold;
+  }
+
+  .heading-2 {
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold;
+  }
+
+  .heading-3 {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold;
+  }
+
+  .subheading {
+    @apply text-lg sm:text-xl md:text-2xl font-medium;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
 }
 
 /* Custom scrollbar styles */
@@ -36,4 +71,65 @@
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Safe Area Insets for Mobile */
+@supports(padding: max(0px)) {
+  .safe-padding-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+  }
+
+  .safe-padding-top {
+    padding-top: max(env(safe-area-inset-top), 1rem);
+  }
+
+  .safe-padding-left {
+    padding-left: max(env(safe-area-inset-left), 1rem);
+  }
+
+  .safe-padding-right {
+    padding-right: max(env(safe-area-inset-right), 1rem);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
 }
