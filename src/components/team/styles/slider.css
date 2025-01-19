@@ -9,6 +9,7 @@
   overflow: hidden;
   padding: 2rem 0;
   position: relative;
+  touch-action: pan-y pinch-zoom;
 }
 
 .team-track {
@@ -16,9 +17,25 @@
   gap: 2rem;
   padding: 0 1rem;
   width: fit-content;
+  will-change: transform;
 }
 
 .team-track-item {
   flex: 0 0 350px; /* Fixed width to match card width */
   height: 480px; /* Fixed height to match card height */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+  .team-slider-container {
+    cursor: grab;
+  }
+
+  .team-slider-container:active {
+    cursor: grabbing;
+  }
+
+  .team-track {
+    gap: 1rem;
+  }
 }

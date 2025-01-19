@@ -26,7 +26,7 @@ export function ProgressBar({ slides, currentSlide, onNavigate, isAnimating }: P
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="absolute bottom-12 left-0 right-0 mx-auto w-2/3 max-w-3xl px-4"
+      className="absolute bottom-8 left-0 right-0 mx-auto w-[90%] sm:w-[85%] md:w-[75%] max-w-3xl px-2 sm:px-4 z-50"
     >
       <div className="flex items-center space-x-6">
         <NavigationButton
@@ -45,7 +45,7 @@ export function ProgressBar({ slides, currentSlide, onNavigate, isAnimating }: P
                 isActive={currentSlide === index}
                 isPast={index < currentSlide}
                 index={index}
-                onClick={handleIconClick}
+                onClick={() => handleIconClick(index)}
               />
             ))}
           </div>

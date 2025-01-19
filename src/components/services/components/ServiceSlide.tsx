@@ -29,7 +29,7 @@ export function ServiceSlide({
   }, [isActive]);
 
   return (
-    <div className={`relative h-screen ${className}`}>
+    <div className={`relative min-h-[100vh] ${className}`}>
       {/* Video Background */}
       <div
         className={`
@@ -50,19 +50,16 @@ export function ServiceSlide({
 
       {/* Content */}
       <div className="relative h-full flex items-center">
-        <div className="max-w-7xl mx-auto px-8 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div
-            className="max-w-xl backdrop-blur-sm bg-black/20 p-6 rounded-2xl
-                       border border-white/10 shadow-lg"
+            className="max-w-xl backdrop-blur-sm bg-black/20 p-4 sm:p-6 md:p-8 rounded-2xl
+                     border border-white/10 shadow-lg
+                     mx-auto md:mx-0"
           >
             <motion.h2
               className={`
-                text-5xl font-bold mb-6 transform transition-all duration-1000 delay-300
-                ${
-                  isActive
-                    ? 'translate-x-0 opacity-100'
-                    : '-translate-x-16 opacity-0'
-                }
+                text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 transform transition-all duration-1000 delay-300
+                ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-16 opacity-0'}
                 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300
                 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]
               `}
@@ -72,14 +69,10 @@ export function ServiceSlide({
 
             <motion.p
               className={`
-                text-lg mb-8 transform transition-all duration-1000 delay-500
+                text-base sm:text-lg mb-6 sm:mb-8 transform transition-all duration-1000 delay-500
                 text-white/90 leading-relaxed
                 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]
-                ${
-                  isActive
-                    ? 'translate-x-0 opacity-100'
-                    : '-translate-x-16 opacity-0'
-                }
+                ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-16 opacity-0'}
               `}
             >
               {slide.description}
@@ -87,23 +80,19 @@ export function ServiceSlide({
 
             <motion.div
               className={`
-                grid grid-cols-1 gap-4 transform transition-all duration-1000 delay-700
-                ${
-                  isActive
-                    ? 'translate-x-0 opacity-100'
-                    : '-translate-x-16 opacity-0'
-                }
+                grid grid-cols-1 gap-3 sm:gap-4 transform transition-all duration-1000 delay-700
+                ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-16 opacity-0'}
               `}
             >
               {slide.details.map((detail, idx) => (
                 <div
                   key={detail}
-                  className="flex items-center space-x-4 bg-white/5 p-3 rounded-lg
+                  className="flex items-center space-x-3 bg-white/5 p-2.5 sm:p-3 rounded-lg
                            backdrop-blur-sm border border-white/10"
                   style={{ transitionDelay: `${800 + idx * 100}ms` }}
                 >
-                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]" />
-                  <span className="text-base text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D] flex-shrink-0" />
+                  <span className="text-sm sm:text-base text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
                     {detail}
                   </span>
                 </div>
@@ -112,9 +101,9 @@ export function ServiceSlide({
               {/* Learn More Button */}
               <motion.button
                 onClick={onLearnMore}
-                className="mt-4 w-full py-3 px-6 rounded-lg
+                className="mt-2 sm:mt-4 w-full py-2.5 sm:py-3 px-6 rounded-lg
                          bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
-                         text-white font-medium
+                         text-white font-medium text-sm sm:text-base
                          transform transition-all duration-300
                          hover:shadow-lg hover:shadow-[#FF6F3C]/20
                          relative overflow-hidden

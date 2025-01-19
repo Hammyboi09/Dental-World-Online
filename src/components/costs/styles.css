@@ -17,3 +17,18 @@
   display: flex;
   align-items: center;
 }
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+  .treatment-slider-container {
+    cursor: grab;
+  }
+
+  .treatment-slider-container:active {
+    cursor: grabbing;
+  }
+
+  .treatment-track {
+    gap: 1rem;
+  }
+}

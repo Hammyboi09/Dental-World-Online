@@ -12,7 +12,7 @@ const clinics = [
   {
     id: 1,
     name: "Rajouri Garden Clinic",
-    address: "A-132, Block A, Rajouri Garden, New Delhi - 110027",
+    address: "A-2/132, Rajouri Garden, New Delhi - 110027",
     phone: "+91-11-25193887",
     hours: "Mon-Sat: 10:00 AM - 8:00 PM",
     mapUrl: "https://maps.app.goo.gl/ZzM3AajdAsAtTWVn7",

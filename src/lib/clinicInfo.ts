@@ -25,18 +25,18 @@ Need to book an appointment? Use /book for booking information.
   getLocations: () => `
 Our Clinics:
 
-1. Rajouri Garden Clinic
-   A-132, Block A,
-   Rajouri Garden, New Delhi - 110027
+1. Rajouri Garden Clinic:
+   A-2/132, Rajouri Garden, 
+   New Delhi - 110027
 
-2. Punjabi Bagh Clinic
+2. Punjabi Bagh Clinic:
    Building No.-57, Road No.-42,
    West Punjabi Bagh, New Delhi - 110026
 
-3. Vasant Vihar Clinic
+3. Vasant Vihar Clinic:
    Contact us for address details
 
-4. Inderlok Charitable Clinic
+4. Inderlok Charitable Clinic:
    Contact us for address details
 
 Would you like to know our working hours? Use /hours command.
