@@ -13,19 +13,29 @@ export function CommandButton({ command, description, onClick }: CommandButtonPr
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="w-full px-6 py-3 rounded-full border-2 border-[#FFA833] 
+      className="w-full px-8 py-4 rounded-[32px] border-2 border-[#FFA833] 
                  text-white bg-transparent hover:bg-[#FFA833]/10
                  transition-all duration-300 group
                  shadow-[0_0_15px_rgba(255,168,51,0.3)]
-                 hover:shadow-[0_0_20px_rgba(255,168,51,0.5)]"
+                 hover:shadow-[0_0_20px_rgba(255,168,51,0.5)]
+                 relative overflow-hidden"
     >
-      <div className="flex flex-col space-y-1">
-        <span className="text-[#FFA833] font-medium group-hover:text-[#FFC76D] transition-colors">
+      {/* Shimmer effect */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent
+                   opacity-0 group-hover:opacity-100 -translate-x-full group-hover:translate-x-full
+                   transition-all duration-700 ease-out"
+      />
+      
+      <div className="flex flex-col space-y-2">
+        <span className="text-[#FFA833] font-medium text-lg group-hover:text-[#FFC76D] transition-colors">
           {command}
         </span>
-        <span className="text-sm text-white/70 group-hover:text-white/90 transition-colors">
-          {description}
-        </span>
+        {description && (
+          <span className="text-sm text-white/70 group-hover:text-white/90 transition-colors">
+            {description}
+          </span>
+        )}
       </div>
     </motion.button>
   );

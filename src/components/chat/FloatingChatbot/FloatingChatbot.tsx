@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { ChatWindow } from './ChatWindow';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,13 +26,19 @@ export function FloatingChatbot() {
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className="bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
-                 p-4 rounded-full shadow-lg hover:shadow-xl
-                 transition-shadow duration-300"
+                 p-2 rounded-full shadow-lg hover:shadow-xl
+                 transition-shadow duration-300 relative"
       >
         {isOpen ? (
           <X className="w-10 h-10 text-white" />
         ) : (
-          <MessageCircle className="w-10 h-10 text-white" />
+          <div className="w-[75px] h-[75px] rounded-full overflow-hidden"> {/* Container with overflow hidden */}
+            <img 
+              src="/elements/chatbot/flossy.png"
+              alt="Flossy AI Assistant"
+              className="w-full h-full object-cover" // Ensures the image covers the container fully
+            />
+          </div>
         )}
       </motion.button>
     </div>

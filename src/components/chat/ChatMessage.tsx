@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Bot } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import type { ChatMessage as ChatMessageType } from '../../types/chat';
 import { CommandButton } from './CommandButton';
 import { chatCommands } from '../../lib/chatCommands';
@@ -25,12 +25,18 @@ export function ChatMessage({ message, onCommandClick }: ChatMessageProps) {
         ${message.type === 'user' ? 'flex-row-reverse space-x-reverse' : 'flex-row'}
       `}>
         <div className={`
-          p-2 rounded-full
-          ${message.type === 'user' ? 'bg-[#FF6F3C]/20' : 'bg-violet-500/20'}
+          ${message.type === 'user' 
+            ? 'p-2 rounded-full bg-[#FF6F3C]/20' 
+            : 'w-12 h-12 rounded-full overflow-hidden flex-shrink-0'
+          }
         `}>
           {message.type === 'user' 
-            ? <MessageSquare className="w-5 h-5 text-[#FF6F3C]" />
-            : <Bot className="w-5 h-5 text-violet-400" />
+            ? <MessageSquare className="w-7 h-7 text-[#FF6F3C]" />
+            : <img 
+                src="/elements/chatbot/flossy.png"
+                alt="Flossy AI Assistant"
+                className="w-full h-full object-contain"
+              />
           }
         </div>
         
