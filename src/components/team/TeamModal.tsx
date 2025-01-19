@@ -22,7 +22,7 @@ export function TeamModal({ isOpen, onClose, member }: TeamModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           />
           
           {/* Modal */}
@@ -32,9 +32,9 @@ export function TeamModal({ isOpen, onClose, member }: TeamModalProps) {
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             className="relative w-full max-w-4xl mx-auto z-50 
                      rounded-2xl shadow-2xl overflow-hidden
-                     h-[600px] md:h-[700px]"
+                     max-h-[90vh] sm:max-h-[95vh] flex flex-col"
           >
-            {/* Close Button - Updated positioning and styling */}
+            {/* Close Button */}
             <motion.button
               onClick={onClose}
               initial={{ opacity: 0 }}
@@ -51,9 +51,10 @@ export function TeamModal({ isOpen, onClose, member }: TeamModalProps) {
                           group-hover:scale-110 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />
             </motion.button>
 
-            <div className="flex flex-col md:flex-row h-full">
-              {/* Image Section - Fixed dimensions */}
-              <div className="h-64 md:h-full md:w-[400px] relative shrink-0">
+            {/* Content Container */}
+            <div className="flex flex-col sm:flex-row h-full max-h-full overflow-hidden">
+              {/* Image Section */}
+              <div className="h-64 sm:h-auto sm:w-[400px] relative shrink-0">
                 <img
                   src={member.image}
                   alt={member.name}
@@ -73,10 +74,10 @@ export function TeamModal({ isOpen, onClose, member }: TeamModalProps) {
                 </div>
               </div>
 
-              {/* Content Section - Takes remaining width */}
-              <div className="flex-grow bg-black/40 backdrop-blur-md h-full">
-                <div className="h-full overflow-y-auto custom-scrollbar">
-                  <div className="p-8 space-y-8">
+              {/* Content Section with Scrollable Area */}
+              <div className="flex-grow bg-black/40 backdrop-blur-md overflow-hidden">
+                <div className="h-full overflow-y-auto">
+                  <div className="p-8 space-y-8 max-h-[80vh] sm:max-h-[85vh] overflow-y-auto">
                     {/* Qualification Section */}
                     <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-white/10">
                       <h4 className="text-lg font-semibold text-white mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
@@ -98,6 +99,9 @@ export function TeamModal({ isOpen, onClose, member }: TeamModalProps) {
                         {member.about}
                       </p>
                     </div>
+
+                    {/* Additional Spacing for Mobile Scroll */}
+                    <div className="h-6 sm:h-0" />
                   </div>
                 </div>
               </div>
