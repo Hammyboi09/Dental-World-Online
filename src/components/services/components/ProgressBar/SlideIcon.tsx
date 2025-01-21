@@ -1,21 +1,13 @@
 import React from 'react';
-import {
-  Syringe,
-  Stethoscope,
-  Heart,
-  Microscope,
-  Shield,
-  Baby,
-  Sparkles,
-} from 'lucide-react';
+import { Scroll as Screw, Crown, Syringe, FileKey, Baby, Sparkles, Microscope } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const icons = {
-  'Basal Implants': Syringe,
-  'Restoring Missing Teeth': Heart,
-  'Dental Implants': Stethoscope,
+  'Basal Implants': Screw,
+  'Restoring Missing Teeth': Crown,
+  'Dental Implants': Syringe,
   'Microscopic Dentistry': Microscope,
-  'Root Canal Treatment': Shield,
+  'Root Canal Treatment': FileKey,
   'Pediatric Dentistry': Baby,
   'Cosmetic Dentistry': Sparkles,
 } as const;
