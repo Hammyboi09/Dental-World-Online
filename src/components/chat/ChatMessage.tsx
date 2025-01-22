@@ -27,11 +27,11 @@ export function ChatMessage({ message, onCommandClick }: ChatMessageProps) {
         <div className={`
           ${message.type === 'user' 
             ? 'p-2 rounded-full bg-[#FF6F3C]/20' 
-            : 'w-12 h-12 rounded-full overflow-hidden flex-shrink-0'
+            : 'w-14 h-14 rounded-full overflow-hidden flex-shrink-0'
           }
         `}>
           {message.type === 'user' 
-            ? <MessageSquare className="w-7 h-7 text-[#FF6F3C]" />
+            ? <MessageSquare className="w-5 h-5 text-[#FF6F3C]" />
             : <img 
                 src="/elements/chatbot/flossy.png"
                 alt="Flossy AI Assistant"
@@ -42,7 +42,7 @@ export function ChatMessage({ message, onCommandClick }: ChatMessageProps) {
         
         <div className="space-y-4">
           <div className={`
-            p-4 rounded-2xl backdrop-blur-sm
+            p-4 rounded-3xl backdrop-blur-sm
             ${message.type === 'user'
               ? 'bg-[#FF6F3C]/10 text-white'
               : 'bg-violet-500/10 text-white'
@@ -52,7 +52,7 @@ export function ChatMessage({ message, onCommandClick }: ChatMessageProps) {
           </div>
 
           {isFirstMessage && onCommandClick && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-3 px-1 py-2">
               {chatCommands.map((cmd) => (
                 <CommandButton
                   key={cmd.command}

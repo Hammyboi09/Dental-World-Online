@@ -13,12 +13,13 @@ export function CommandButton({ command, description, onClick }: CommandButtonPr
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="w-full px-8 py-4 rounded-[32px] border-2 border-[#FFA833] 
+      className="w-full px-3 py-2 rounded-3xl border-2 border-[#FFA833] 
                  text-white bg-transparent hover:bg-[#FFA833]/10
                  transition-all duration-300 group
                  shadow-[0_0_15px_rgba(255,168,51,0.3)]
                  hover:shadow-[0_0_20px_rgba(255,168,51,0.5)]
-                 relative overflow-hidden"
+                 relative overflow-hidden
+                 mb-1 last:mb-0"
     >
       {/* Shimmer effect */}
       <div 
@@ -28,14 +29,12 @@ export function CommandButton({ command, description, onClick }: CommandButtonPr
       />
       
       <div className="flex flex-col space-y-2">
-        <span className="text-[#FFA833] font-medium text-lg group-hover:text-[#FFC76D] transition-colors">
+        <span className="text-lg font-medium text-[#FFA833] group-hover:text-[#FFC76D] transition-colors">
           {command}
         </span>
-        {description && (
-          <span className="text-sm text-white/70 group-hover:text-white/90 transition-colors">
-            {description}
-          </span>
-        )}
+        <span className="text-sm text-white/70 group-hover:text-white/90 transition-colors">
+          {description}
+        </span>
       </div>
     </motion.button>
   );
