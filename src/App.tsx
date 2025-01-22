@@ -21,6 +21,7 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsOfServicePage } from './pages/TermsOfServicePage';
 import { CookiePolicyPage } from './pages/CookiePolicyPage';
 import { FloatingChatbot } from './components/chat/FloatingChatbot/FloatingChatbot';
+import { AudioPlayer } from './components/audio/AudioPlayer';
 
 function HomePage() {
   return (
@@ -29,15 +30,15 @@ function HomePage() {
         <section id="hero" className="relative">
           <Hero />
         </section>
-        
+
         <section id="services" className="relative">
           <Services />
         </section>
-        
+
         <section id="testimonials" className="relative">
           <Testimonials />
         </section>
-        
+
         <section id="contact" className="relative">
           <Footer />
         </section>
@@ -69,6 +70,7 @@ function App() {
         <Route path="/cookie-policy" element={<CookiePolicyPage />} />
       </Routes>
       <FloatingChatbot />
+      <AudioPlayer />
     </Router>
   );
 }

@@ -1,16 +1,15 @@
 import React from 'react';
-import { Scroll as Screw, Crown, Syringe, FileKey, Baby, Sparkles, Microscope } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-const icons = {
-  'Basal Implants': Screw,
-  'Restoring Missing Teeth': Crown,
-  'Dental Implants': Syringe,
-  'Microscopic Dentistry': Microscope,
-  'Root Canal Treatment': FileKey,
-  'Pediatric Dentistry': Baby,
-  'Cosmetic Dentistry': Sparkles,
-} as const;
+import {
+  Syringe,
+  Stethoscope,
+  Heart,
+  Microscope,
+  Shield,
+  Baby,
+  Sparkles,
+} from 'lucide-react';
+import { serviceIcons } from './ServiceIcons';
 
 interface SlideIconProps {
   title: string;
@@ -27,12 +26,22 @@ export function SlideIcon({
   index,
   onClick,
 }: SlideIconProps) {
-  const Icon = icons[title as keyof typeof icons];
-
-  if (!Icon) {
-    console.warn(`No icon found for title: ${title}`);
-    return null;
-  }
+  // First check if we have a custom SVG icon for this service
+  const CustomIcon = serviceIcons[title as keyof typeof serviceIcons];
+  
+  // If no custom icon, use the default Lucide icons
+  const DefaultIcon = (() => {
+    switch (title) {
+      case 'Microscopic Dentistry':
+        return Microscope;
+      case 'Pediatric Dentistry':
+        return Baby;
+      case 'Cosmetic Dentistry':
+        return Sparkles;
+      default:
+        return Shield; // Default fallback icon
+    }
+  })();
 
   return (
     <motion.button
@@ -56,16 +65,20 @@ export function SlideIcon({
       `}
       aria-label={`Go to ${title} slide`}
     >
-      <Icon
-        className={`
-          w-4 h-4 transition-all duration-300
-          ${
-            isActive
-              ? 'text-white filter brightness-150'
-              : 'text-white/50 group-hover:text-white/80'
-          }
-        `}
-      />
+      {CustomIcon ? (
+        <CustomIcon />
+      ) : (
+        <DefaultIcon
+          className={`
+            w-4 h-4 transition-all duration-300
+            ${
+              isActive
+                ? 'text-white filter brightness-150'
+                : 'text-white/50 group-hover:text-white/80'
+            }
+          `}
+        />
+      )}
 
       {/* Tooltip */}
       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
