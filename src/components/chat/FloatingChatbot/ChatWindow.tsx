@@ -159,7 +159,7 @@ export function ChatWindow({ onClose }: ChatWindowProps) {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-full overflow-hidden">
                 <img 
-                  src="/elements/chatbot/flossy.png"
+                  src="/elements/chatbot/flossyimg.gif"
                   alt="Flossy AI Assistant"
                   className="w-full h-full object-cover"
                 />

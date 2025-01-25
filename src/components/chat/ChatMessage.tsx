@@ -33,7 +33,7 @@ export function ChatMessage({ message, onCommandClick }: ChatMessageProps) {
           {message.type === 'user' 
             ? <MessageSquare className="w-5 h-5 text-[#FF6F3C]" />
             : <img 
-                src="/elements/chatbot/flossy.png"
+                src="/elements/chatbot/flossyimg.gif"
                 alt="Flossy AI Assistant"
                 className="w-full h-full object-contain"
               />

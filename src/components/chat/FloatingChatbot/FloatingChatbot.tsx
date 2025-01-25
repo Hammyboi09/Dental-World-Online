@@ -26,17 +26,21 @@ export function FloatingChatbot() {
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className="bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
-                 p-2 rounded-full shadow-lg hover:shadow-xl
+                 p-1 rounded-full shadow-lg hover:shadow-xl
                  transition-shadow duration-300 relative"
       >
-        {isOpen ? (
-          <X className="w-10 h-10 text-white" />
+
+        
+{isOpen ? (
+          <div className="bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D] p-1 rounded-full">
+            <X className="w-12 h-12 text-white" />
+          </div>
         ) : (
-          <div className="w-[75px] h-[75px] rounded-full overflow-hidden"> {/* Container with overflow hidden */}
+          <div className="w-[100px] h-[100px] rounded-full overflow-hidden"> 
             <img 
-              src="/elements/chatbot/flossy.png"
+              src="/elements/chatbot/flossy.gif"
               alt="Flossy AI Assistant"
-              className="w-full h-full object-cover" // Ensures the image covers the container fully
+              className="w-full h-full object-contain scale-100 transform -translate-y-1" 
             />
           </div>
         )}
@@ -44,3 +48,4 @@ export function FloatingChatbot() {
     </div>
   );
 }
+
