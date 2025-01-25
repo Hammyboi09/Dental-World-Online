@@ -19,35 +19,35 @@ const steps = [
     title: 'Primary Concerns',
     description: 'Select your main dental concerns',
     titleClass: 'text-center',
-    descriptionClass: 'text-center w-40 mx-auto'
+    descriptionClass: 'text-center w-40 mx-auto',
   },
   {
     id: 2,
     title: 'Dental History',
     description: 'Tell us about your past treatments',
     titleClass: 'text-center',
-    descriptionClass: 'text-center w-44 mx-auto'
+    descriptionClass: 'text-center w-44 mx-auto',
   },
   {
     id: 3,
     title: 'Oral Hygiene',
     description: 'Your daily dental care routine',
     titleClass: 'text-center',
-    descriptionClass: 'text-center w-44 mx-auto'
+    descriptionClass: 'text-center w-44 mx-auto',
   },
   {
     id: 4,
     title: 'Lifestyle Factors',
     description: 'Habits that affect dental health',
     titleClass: 'text-center',
-    descriptionClass: 'text-center w-44 mx-auto'
+    descriptionClass: 'text-center w-44 mx-auto',
   },
   {
     id: 5,
     title: 'Photos',
     description: 'Upload dental photos',
     titleClass: 'text-center',
-    descriptionClass: 'text-center w-32 mx-auto'
+    descriptionClass: 'text-center w-32 mx-auto',
   },
 ];
 
@@ -55,9 +55,7 @@ export function ConsultationForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(
-    null
-  );
+  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
   const handleOptionToggle = (field: keyof FormData, option: string) => {
@@ -192,9 +190,9 @@ export function ConsultationForm() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      {/* Progress Steps */}
+      {/* Progress Steps - Mobile Optimized */}
       <div className="mb-12 relative">
-        <div className="absolute top-5 left-0 right-0 h-0.5 bg-black-800">
+        <div className="absolute top-3 sm:top-5 left-0 right-0 h-0.5 bg-black-800">
           <div
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 to-green-500 transition-all duration-500"
             style={{
@@ -219,7 +217,7 @@ export function ConsultationForm() {
               >
                 <div
                   className={`
-                    w-10 h-10 rounded-full flex items-center justify-center
+                    w-6 h-6 sm:w-10 sm:h-10 rounded-full flex items-center justify-center
                     border-2 transition-all duration-500
                     ${
                       isComplete
@@ -232,7 +230,7 @@ export function ConsultationForm() {
                 >
                   {isComplete ? (
                     <svg
-                      className="w-6 h-6 text-white"
+                      className="w-4 h-4 sm:w-6 sm:h-6 text-white"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -247,7 +245,7 @@ export function ConsultationForm() {
                   ) : (
                     <span
                       className={`
-                      text-sm font-medium
+                      text-xs sm:text-sm font-medium
                       ${isCurrent ? 'text-green-100' : 'text-gray-100'}
                     `}
                     >
@@ -258,7 +256,7 @@ export function ConsultationForm() {
 
                 <h4
                   className={`
-                  mt-4 text-sm font-medium transition-colors duration-300
+                  mt-2 sm:mt-4 text-xs sm:text-sm font-medium transition-colors duration-300
                   ${isCurrent ? 'text-black-100' : 'text-black-100'}
                   ${step.titleClass}
                 `}
@@ -268,7 +266,7 @@ export function ConsultationForm() {
 
                 <p
                   className={`
-                  text-xs transition-colors duration-300
+                  hidden sm:block text-xs transition-colors duration-300
                   ${isCurrent ? 'text-black-100' : 'text-black-100'}
                   ${step.descriptionClass}
                 `}
