@@ -36,7 +36,7 @@ export function FloatingChatbot() {
             <X className="w-12 h-12 text-white" />
           </div>
         ) : (
-          <div className="w-[100px] h-[100px] rounded-full overflow-hidden"> 
+          <div className="w-[80px] h-[80px] rounded-full overflow-hidden"> 
             <img 
               src="/elements/chatbot/flossy.gif"
               alt="Flossy AI Assistant"
