@@ -5,9 +5,10 @@ import type { AnalysisResult } from './types';
 interface AnalysisResultsProps {
   result: AnalysisResult;
   images: string[];
+  onStartAgain: () => void;
 }
 
-export function AnalysisResults({ result, images }: AnalysisResultsProps) {
+export function AnalysisResults({ result, images, onStartAgain }: AnalysisResultsProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -47,7 +48,7 @@ export function AnalysisResults({ result, images }: AnalysisResultsProps) {
 
       <div className="bg-black/20 backdrop-blur-sm rounded-xl p-6 border border-white/10">
         <h3 className="text-lg font-semibold text-white mb-4">Analyzed Images</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {images.map((url, index) => (
             <div key={index} className="relative aspect-square">
               <img
@@ -59,6 +60,26 @@ export function AnalysisResults({ result, images }: AnalysisResultsProps) {
           ))}
         </div>
       </div>
+
+      {/* Start Again Button */}
+      <motion.button
+        onClick={onStartAgain}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="w-full py-4 rounded-xl
+                 bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
+                 text-white text-lg font-semibold
+                 transform transition-all duration-300
+                 hover:shadow-lg hover:shadow-[#FF6F3C]/20
+                 relative overflow-hidden
+                 group"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 
+                     opacity-0 group-hover:opacity-100 
+                     -translate-x-full group-hover:translate-x-full 
+                     transition-all duration-700 ease-out" />
+        <span className="relative z-10">Start New Consultation</span>
+      </motion.button>
     </motion.div>
   );
 }

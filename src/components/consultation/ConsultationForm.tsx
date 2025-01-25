@@ -1,114 +1,111 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Upload, ArrowLeft, ArrowRight, Check, XCircle } from 'lucide-react';
-import { formOptions } from './formOptions';
+import { motion } from 'framer-motion';
 import { PhotoUpload } from './PhotoUpload';
-import { AnalysisResults } from './AnalysisResults';
+import { formOptions } from './formOptions';
 import type { FormData, AnalysisResult } from './types';
-import { getChatResponse } from '../../lib/gemini';
-import { StepIndicator } from './StepIndicator';
+import { AnalysisResults } from './AnalysisResults';
 
 const initialFormData: FormData = {
   primaryConcerns: [],
   dentalHistory: [],
   oralHygiene: '',
   lifestyleFactors: [],
-  images: []
+  images: [],
 };
 
 const steps = [
-  { id: 1, title: 'Primary Concerns', description: 'Share your dental concerns' },
-  { id: 2, title: 'Dental History', description: 'Previous treatments & procedures' },
-  { id: 3, title: 'Oral Hygiene', description: 'Your daily dental care habits' },
-  { id: 4, title: 'Lifestyle', description: 'Factors affecting your dental health' },
-  { id: 5, title: 'Photos', description: 'Upload clear dental images' }
+  {
+    id: 1,
+    title: 'Primary Concerns',
+    description: 'Select your main dental concerns',
+    titleClass: 'text-center',
+    descriptionClass: 'text-center w-40 mx-auto'
+  },
+  {
+    id: 2,
+    title: 'Dental History',
+    description: 'Tell us about your past treatments',
+    titleClass: 'text-center',
+    descriptionClass: 'text-center w-44 mx-auto'
+  },
+  {
+    id: 3,
+    title: 'Oral Hygiene',
+    description: 'Your daily dental care routine',
+    titleClass: 'text-center',
+    descriptionClass: 'text-center w-44 mx-auto'
+  },
+  {
+    id: 4,
+    title: 'Lifestyle Factors',
+    description: 'Habits that affect dental health',
+    titleClass: 'text-center',
+    descriptionClass: 'text-center w-44 mx-auto'
+  },
+  {
+    id: 5,
+    title: 'Photos',
+    description: 'Upload dental photos',
+    titleClass: 'text-center',
+    descriptionClass: 'text-center w-32 mx-auto'
+  },
 ];
 
 export function ConsultationForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
+  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(
+    null
+  );
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
-  const handleNext = () => {
-    if (currentStep < steps.length) {
-      setCurrentStep(prev => prev + 1);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) {
-      setCurrentStep(prev => prev - 1);
-    }
-  };
-
-  const handleDentalHistoryChange = (value: string, checked: boolean) => {
-    setFormData(prev => {
-      let newDentalHistory = [...prev.dentalHistory];
-      
-      if (value === 'None of the Above') {
-        // If "None of the Above" is being checked, clear all other selections
-        if (checked) {
-          newDentalHistory = ['None of the Above'];
-        } else {
-          newDentalHistory = [];
-        }
-      } else {
-        // If any other option is being checked
-        if (checked) {
-          // Remove "None of the Above" if it exists
-          newDentalHistory = newDentalHistory.filter(item => item !== 'None of the Above');
-          // Add the new selection
-          newDentalHistory.push(value);
-        } else {
-          // Remove the unchecked option
-          newDentalHistory = newDentalHistory.filter(item => item !== value);
-        }
-      }
-      
-      return {
-        ...prev,
-        dentalHistory: newDentalHistory
-      };
-    });
-  };
-
-  const handleLifestyleFactorsChange = (value: string, checked: boolean) => {
-    setFormData(prev => {
-      let newLifestyleFactors = [...prev.lifestyleFactors];
-      
-      if (value === 'None of the Above') {
-        // If "None of the Above" is being checked, clear all other selections
-        if (checked) {
-          newLifestyleFactors = ['None of the Above'];
-        } else {
-          newLifestyleFactors = [];
-        }
-      } else {
-        // If any other option is being checked
-        if (checked) {
-          // Remove "None of the Above" if it exists
-          newLifestyleFactors = newLifestyleFactors.filter(item => item !== 'None of the Above');
-          // Add the new selection
-          newLifestyleFactors.push(value);
-        } else {
-          // Remove the unchecked option
-          newLifestyleFactors = newLifestyleFactors.filter(item => item !== value);
-        }
-      }
-      
-      return {
-        ...prev,
-        lifestyleFactors: newLifestyleFactors
-      };
-    });
-  };
-
-  const handleUnSelectAll = (field: 'primaryConcerns' | 'dentalHistory' | 'lifestyleFactors') => {
-    setFormData(prev => ({
+  const handleOptionToggle = (field: keyof FormData, option: string) => {
+    setFormData((prev) => ({
       ...prev,
-      [field]: []
+      [field]: Array.isArray(prev[field])
+        ? (prev[field] as string[]).includes(option)
+          ? (prev[field] as string[]).filter((item) => item !== option)
+          : [...(prev[field] as string[]), option]
+        : option,
     }));
+  };
+
+  const handleUnselectAll = (field: keyof FormData) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: Array.isArray(prev[field]) ? [] : '',
+    }));
+  };
+
+  const handleImageUpload = (files: FileList) => {
+    const newImages = Array.from(files);
+    const totalImages = formData.images.length + newImages.length;
+
+    if (totalImages > 3) {
+      alert('You can only upload a maximum of 3 photos.');
+      return;
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      images: [...prev.images, ...newImages],
+    }));
+
+    // Create preview URLs for the new images
+    const newPreviewUrls = newImages.map((file) => URL.createObjectURL(file));
+    setPreviewUrls((prev) => [...prev, ...newPreviewUrls]);
+  };
+
+  const handleImageRemove = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index),
+    }));
+
+    // Revoke the URL to prevent memory leaks
+    URL.revokeObjectURL(previewUrls[index]);
+    setPreviewUrls((prev) => prev.filter((_, i) => i !== index));
   };
 
   const isStepComplete = () => {
@@ -122,393 +119,373 @@ export function ConsultationForm() {
       case 4:
         return formData.lifestyleFactors.length > 0;
       case 5:
-        return formData.images.length > 0;
+        return formData.images.length === 3; // Require exactly 3 photos
       default:
         return false;
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isStepComplete() || isSubmitting) return;
-
-    setIsSubmitting(true);
-    try {
-      // Simulate AI analysis - replace with actual API call
-      const result: AnalysisResult = {
-        toothCondition: 85,
-        gumHealth: 90,
-        alignment: 75,
-        hygieneScore: 88,
-        concerns: [
-          "Minor plaque buildup detected",
-          "Slight misalignment in lower teeth",
-          "Early signs of enamel wear"
-        ],
-        recommendations: [
-          "Schedule professional cleaning",
-          "Consider orthodontic consultation",
-          "Use enamel-strengthening toothpaste",
-          "Maintain current oral hygiene routine"
-        ]
-      };
-      setAnalysisResult(result);
-    } catch (error) {
-      console.error('Error analyzing dental condition:', error);
-    } finally {
-      setIsSubmitting(false);
+  const handleNext = () => {
+    if (currentStep < steps.length) {
+      setCurrentStep((prev) => prev + 1);
     }
   };
 
+  const handleBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep((prev) => prev - 1);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (formData.images.length !== 3) {
+      alert('Please provide exactly 3 photos for accurate analysis.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulate API call with a delay
+    setTimeout(() => {
+      const mockResult: AnalysisResult = {
+        toothCondition: Math.floor(Math.random() * 30) + 70,
+        gumHealth: Math.floor(Math.random() * 30) + 70,
+        alignment: Math.floor(Math.random() * 30) + 70,
+        hygieneScore: Math.floor(Math.random() * 30) + 70,
+        concerns: [
+          'Minor plaque buildup detected',
+          'Slight gum inflammation observed',
+          'Early signs of misalignment noted',
+        ],
+        recommendations: [
+          'Schedule professional cleaning',
+          'Consider orthodontic consultation',
+          'Improve flossing technique',
+          'Use fluoride toothpaste',
+        ],
+      };
+
+      setAnalysisResult(mockResult);
+      setIsSubmitting(false);
+    }, 2000);
+  };
+
+  const resetForm = () => {
+    setCurrentStep(1);
+    setFormData(initialFormData);
+    setIsSubmitting(false);
+    setAnalysisResult(null);
+    // Cleanup preview URLs
+    previewUrls.forEach((url) => URL.revokeObjectURL(url));
+    setPreviewUrls([]);
+  };
+
   if (analysisResult) {
-    return <AnalysisResults result={analysisResult} images={formData.images.map(file => URL.createObjectURL(file))} />;
+    return (
+      <AnalysisResults
+        result={analysisResult}
+        images={previewUrls}
+        onStartAgain={resetForm}
+      />
+    );
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
-      {/* Step Indicator */}
-      <StepIndicator currentStep={currentStep} steps={steps} />
+    <div className="max-w-3xl mx-auto">
+      {/* Progress Steps */}
+      <div className="mb-12 relative">
+        <div className="absolute top-5 left-0 right-0 h-0.5 bg-black-800">
+          <div
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 to-green-500 transition-all duration-500"
+            style={{
+              width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
+            }}
+          />
+        </div>
+
+        <div className="relative flex justify-between">
+          {steps.map((step) => {
+            const isComplete = currentStep > step.id;
+            const isCurrent = currentStep === step.id;
+
+            return (
+              <div
+                key={step.id}
+                className={`
+                  flex flex-col items-center
+                  ${step.id === 1 ? 'text-left' : ''}
+                  ${step.id === steps.length ? 'text-right' : ''}
+                `}
+              >
+                <div
+                  className={`
+                    w-10 h-10 rounded-full flex items-center justify-center
+                    border-2 transition-all duration-500
+                    ${
+                      isComplete
+                        ? 'bg-green-500 border-green-500'
+                        : isCurrent
+                        ? 'bg-green-500 border-green-500'
+                        : 'bg-red-800 border-red-700'
+                    }
+                  `}
+                >
+                  {isComplete ? (
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  ) : (
+                    <span
+                      className={`
+                      text-sm font-medium
+                      ${isCurrent ? 'text-green-100' : 'text-gray-100'}
+                    `}
+                    >
+                      {step.id}
+                    </span>
+                  )}
+                </div>
+
+                <h4
+                  className={`
+                  mt-4 text-sm font-medium transition-colors duration-300
+                  ${isCurrent ? 'text-black-100' : 'text-black-100'}
+                  ${step.titleClass}
+                `}
+                >
+                  {step.title}
+                </h4>
+
+                <p
+                  className={`
+                  text-xs transition-colors duration-300
+                  ${isCurrent ? 'text-black-100' : 'text-black-100'}
+                  ${step.descriptionClass}
+                `}
+                >
+                  {step.description}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Form Content */}
-      <form onSubmit={handleSubmit} className="mt-12">
-        <AnimatePresence mode="wait">
-          {currentStep === 1 && (
-            <motion.div
-              key="step1"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10"
-            >
-              <h3 className="text-2xl font-semibold text-white mb-4">
-                What dental concerns bring you here today?
+      <div
+        className="bg-black/40 backdrop-blur-md rounded-2xl p-8 mb-8
+                    border border-white/20 shadow-lg"
+      >
+        {currentStep === 1 && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-white">
+                What are your primary dental concerns?
               </h3>
-              <p className="text-white/90 mb-6">
-                Select all that apply to receive a personalized analysis
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {formOptions.primaryConcerns.map((concern) => (
-                  <label
-                    key={concern}
-                    className={`
-                      flex items-center p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer
-                      ${formData.primaryConcerns.includes(concern)
-                        ? 'border-violet-500 bg-violet-500/10'
-                        : 'border-white/10 hover:border-white/30'
-                      }
-                    `}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={formData.primaryConcerns.includes(concern)}
-                      onChange={(e) => {
-                        setFormData(prev => ({
-                          ...prev,
-                          primaryConcerns: e.target.checked
-                            ? [...prev.primaryConcerns, concern]
-                            : prev.primaryConcerns.filter(c => c !== concern)
-                        }));
-                      }}
-                      className="sr-only"
-                    />
-                    <Check 
-                      className={`
-                        w-5 h-5 mr-3 transition-all duration-300
-                        ${formData.primaryConcerns.includes(concern)
-                          ? 'text-violet-500 scale-100'
-                          : 'text-white/30 scale-75'
-                        }
-                      `}
-                    />
-                    <span className="text-white">{concern}</span>
-                  </label>
-                ))}
-              </div>
-
-              {/* Un-Select All Button */}
-              <div className="mt-6 flex justify-end">
+              <button
+                onClick={() => handleUnselectAll('primaryConcerns')}
+                className="px-4 py-2 text-sm text-white hover:text-white
+                         bg-red-500/70 hover:bg-red-500
+                         rounded-lg transition-colors"
+              >
+                Unselect All
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {formOptions.primaryConcerns.map((option) => (
                 <button
-                  type="button"
-                  onClick={() => handleUnSelectAll('primaryConcerns')}
-                  className="flex items-center px-4 py-2 rounded-lg
-                           bg-red-600 text-white hover:bg-red-700
-                           transition-all duration-300 border border-red-500"
+                  key={option}
+                  onClick={() => handleOptionToggle('primaryConcerns', option)}
+                  className={`
+                    p-4 rounded-xl text-left transition-all duration-300
+                    ${
+                      formData.primaryConcerns.includes(option)
+                        ? 'bg-green-500/20 border-green-500'
+                        : 'bg-white/5 border-white/20'
+                    }
+                    border hover:border-green-500/50
+                  `}
                 >
-                  <XCircle className="w-5 h-5 mr-2" />
-                  Un-Select All
+                  <span className="text-white">{option}</span>
                 </button>
-              </div>
-            </motion.div>
-          )}
+              ))}
+            </div>
+          </div>
+        )}
 
-          {currentStep === 2 && (
-            <motion.div
-              key="step2"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10"
-            >
-              <h3 className="text-2xl font-semibold text-white mb-4">
-                Previous Dental History
+        {currentStep === 2 && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-white">
+                Select your previous dental treatments:
               </h3>
-              <p className="text-white/90 mb-6">
-                Select any previous dental treatments you've had
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {formOptions.dentalHistory.map((item) => (
-                  <label
-                    key={item}
-                    className={`
-                      flex items-center p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer
-                      ${formData.dentalHistory.includes(item)
-                        ? 'border-violet-500 bg-violet-500/10'
-                        : 'border-white/10 hover:border-white/30'
-                      }
-                      ${item === 'None of the Above' ? 'col-span-full' : ''}
-                    `}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={formData.dentalHistory.includes(item)}
-                      onChange={(e) => handleDentalHistoryChange(item, e.target.checked)}
-                      className="sr-only"
-                    />
-                    <Check 
-                      className={`
-                        w-5 h-5 mr-3 transition-all duration-300
-                        ${formData.dentalHistory.includes(item)
-                          ? 'text-violet-500 scale-100'
-                          : 'text-white/30 scale-75'
-                        }
-                      `}
-                    />
-                    <span className="text-white">{item}</span>
-                  </label>
-                ))}
-              </div>
-
-              {/* Un-Select All Button */}
-              <div className="mt-6 flex justify-end">
+              <button
+                onClick={() => handleUnselectAll('dentalHistory')}
+                className="px-4 py-2 text-sm text-white hover:text-white
+                         bg-red-500/70 hover:bg-red-500
+                         rounded-lg transition-colors"
+              >
+                Unselect All
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {formOptions.dentalHistory.map((option) => (
                 <button
-                  type="button"
-                  onClick={() => handleUnSelectAll('dentalHistory')}
-                  className="flex items-center px-4 py-2 rounded-lg
-                           bg-red-600 text-white hover:bg-red-700
-                           transition-all duration-300 border border-red-500"
+                  key={option}
+                  onClick={() => handleOptionToggle('dentalHistory', option)}
+                  className={`
+                    p-4 rounded-xl text-left transition-all duration-300
+                    ${
+                      formData.dentalHistory.includes(option)
+                        ? 'bg-green-500/20 border-green-500'
+                        : 'bg-white/5 border-white/20'
+                    }
+                    border hover:border-green-500/50
+                  `}
                 >
-                  <XCircle className="w-5 h-5 mr-2" />
-                  Un-Select All
+                  <span className="text-white">{option}</span>
                 </button>
-              </div>
-            </motion.div>
-          )}
+              ))}
+            </div>
+          </div>
+        )}
 
-          {currentStep === 3 && (
-            <motion.div
-              key="step3"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10"
-            >
-              <h3 className="text-2xl font-semibold text-white mb-4">
-                Oral Hygiene Habits
-              </h3>
-              <p className="text-white/90 mb-6">
-                How often do you brush your teeth?
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {formOptions.oralHygiene.map((frequency) => (
-                  <label
-                    key={frequency}
-                    className={`
-                      flex items-center p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer
-                      ${formData.oralHygiene === frequency
-                        ? 'border-violet-500 bg-violet-500/10'
-                        : 'border-white/10 hover:border-white/30'
-                      }
-                    `}
-                  >
-                    <input
-                      type="radio"
-                      name="oralHygiene"
-                      value={frequency}
-                      checked={formData.oralHygiene === frequency}
-                      onChange={(e) => {
-                        setFormData(prev => ({
-                          ...prev,
-                          oralHygiene: e.target.value
-                        }));
-                      }}
-                      className="sr-only"
-                    />
-                    <Check 
-                      className={`
-                        w-5 h-5 mr-3 transition-all duration-300
-                        ${formData.oralHygiene === frequency
-                          ? 'text-violet-500 scale-100'
-                          : 'text-white/30 scale-75'
-                        }
-                      `}
-                    />
-                    <span className="text-white">{frequency}</span>
-                  </label>
-                ))}
-              </div>
-            </motion.div>
-          )}
-
-          {currentStep === 4 && (
-            <motion.div
-              key="step4"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="bg-black/20 backdrop-blur-sm rounded-xl p-8 border border-white/10"
-            >
-              <h3 className="text-2xl font-semibold text-white mb-4">
-                Lifestyle Factors
-              </h3>
-              <p className="text-white/90 mb-6">
-                Select any factors that apply to you
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {formOptions.lifestyleFactors.map((factor) => (
-                  <label
-                    key={factor}
-                    className={`
-                      flex items-center p-4 rounded-lg border-2 transition-all duration-300 cursor-pointer
-                      ${formData.lifestyleFactors.includes(factor)
-                        ? 'border-violet-500 bg-violet-500/10'
-                        : 'border-white/10 hover:border-white/30'
-                      }
-                      ${factor === 'None of the Above' ? 'col-span-full' : ''}
-                    `}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={formData.lifestyleFactors.includes(factor)}
-                      onChange={(e) => handleLifestyleFactorsChange(factor, e.target.checked)}
-                      className="sr-only"
-                    />
-                    <Check 
-                      className={`
-                        w-5 h-5 mr-3 transition-all duration-300
-                        ${formData.lifestyleFactors.includes(factor)
-                          ? 'text-violet-500 scale-100'
-                          : 'text-white/30 scale-75'
-                        }
-                      `}
-                    />
-                    <span className="text-white">{factor}</span>
-                  </label>
-                ))}
-              </div>
-
-              {/* Un-Select All Button */}
-              <div className="mt-6 flex justify-end">
+        {currentStep === 3 && (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white mb-4">
+              How often do you brush your teeth?
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {formOptions.oralHygiene.map((option) => (
                 <button
-                  type="button"
-                  onClick={() => handleUnSelectAll('lifestyleFactors')}
-                  className="flex items-center px-4 py-2 rounded-lg
-                           bg-red-600 text-white hover:bg-red-700
-                           transition-all duration-300 border border-red-500"
+                  key={option}
+                  onClick={() => handleOptionToggle('oralHygiene', option)}
+                  className={`
+                    p-4 rounded-xl text-left transition-all duration-300
+                    ${
+                      formData.oralHygiene === option
+                        ? 'bg-green-500/20 border-green-500'
+                        : 'bg-white/5 border-white/20'
+                    }
+                    border hover:border-green-500/50
+                  `}
                 >
-                  <XCircle className="w-5 h-5 mr-2" />
-                  Un-Select All
+                  <span className="text-white">{option}</span>
                 </button>
-              </div>
-            </motion.div>
-          )}
+              ))}
+            </div>
+          </div>
+        )}
 
-          {currentStep === 5 && (
-            <motion.div
-              key="step5"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-            >
-              <PhotoUpload
-                previewUrls={formData.images.map(file => URL.createObjectURL(file))}
-                onImageUpload={(files) => {
-                  setFormData(prev => ({
-                    ...prev,
-                    images: [...prev.images, ...Array.from(files)]
-                  }));
-                }}
-                onImageRemove={(index) => {
-                  setFormData(prev => ({
-                    ...prev,
-                    images: prev.images.filter((_, i) => i !== index)
-                  }));
-                }}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {currentStep === 4 && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-white">
+                Select any applicable lifestyle factors:
+              </h3>
+              <button
+                onClick={() => handleUnselectAll('lifestyleFactors')}
+                className="px-4 py-2 text-sm text-white hover:text-white
+                         bg-red-500/70 hover:bg-red-500
+                         rounded-lg transition-colors"
+              >
+                Unselect All
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {formOptions.lifestyleFactors.map((option) => (
+                <button
+                  key={option}
+                  onClick={() => handleOptionToggle('lifestyleFactors', option)}
+                  className={`
+                    p-4 rounded-xl text-left transition-all duration-300
+                    ${
+                      formData.lifestyleFactors.includes(option)
+                        ? 'bg-green-500/20 border-green-500'
+                        : 'bg-white/5 border-white/20'
+                    }
+                    border hover:border-green-500/50
+                  `}
+                >
+                  <span className="text-white">{option}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between mt-8">
+        {currentStep === 5 && (
+          <PhotoUpload
+            previewUrls={previewUrls}
+            onImageUpload={handleImageUpload}
+            onImageRemove={handleImageRemove}
+          />
+        )}
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-between space-x-4">
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={handleBack}
+          disabled={currentStep === 1}
+          className="px-6 py-3 rounded-lg bg-black/40 text-white
+                   disabled:opacity-50 disabled:cursor-not-allowed
+                   hover:bg-white/40 hover:text-black transition-all duration-300"
+        >
+          Back
+        </motion.button>
+
+        {currentStep < steps.length ? (
           <motion.button
-            type="button"
-            onClick={handleBack}
-            className={`
-              flex items-center px-6 py-3 rounded-xl
-              text-white font-medium
-              transition-all duration-300
-              ${currentStep === 1
-                ? 'opacity-50 cursor-not-allowed bg-gray-500'
-                : 'bg-gray-700 hover:bg-gray-600'
-              }
-            `}
-            disabled={currentStep === 1}
-            whileHover={currentStep !== 1 ? { scale: 1.02 } : undefined}
-            whileTap={currentStep !== 1 ? { scale: 0.98 } : undefined}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleNext}
+            disabled={!isStepComplete()}
+            className="px-6 py-3 rounded-lg
+                     bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
+                     text-white font-medium
+                     disabled:opacity-50 disabled:cursor-not-allowed
+                     hover:shadow-lg hover:shadow-[#FF6F3C]/20
+                     transition-all duration-300"
           >
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Back
+            Next
           </motion.button>
-
-          {currentStep < steps.length ? (
-            <motion.button
-              type="button"
-              onClick={handleNext}
-              className={`
-                flex items-center px-6 py-3 rounded-xl
-                text-white font-medium
-                transition-all duration-300
-                ${isStepComplete()
-                  ? 'bg-violet-600 hover:bg-violet-500'
-                  : 'opacity-50 cursor-not-allowed bg-violet-800'
-                }
-              `}
-              disabled={!isStepComplete()}
-              whileHover={isStepComplete() ? { scale: 1.02 } : undefined}
-              whileTap={isStepComplete() ? { scale: 0.98 } : undefined}
-            >
-              Next
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </motion.button>
-          ) : (
-            <motion.button
-              type="submit"
-              disabled={isSubmitting}
-              className={`
-                flex items-center px-8 py-3 rounded-xl
-                bg-gradient-to-r from-violet-600 to-indigo-600
-                text-white font-medium
-                transition-all duration-300
-                ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:from-violet-500 hover:to-indigo-500'}
-              `}
-              whileHover={!isSubmitting ? { scale: 1.02 } : undefined}
-              whileTap={!isSubmitting ? { scale: 0.98 } : undefined}
-            >
-              {isSubmitting ? 'Analyzing...' : 'Get AI Analysis'}
-            </motion.button>
-          )}
-        </div>
-      </form>
+        ) : (
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleSubmit}
+            disabled={!isStepComplete() || isSubmitting}
+            className="px-6 py-3 rounded-lg
+                     bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
+                     text-white font-medium
+                     disabled:opacity-50 disabled:cursor-not-allowed
+                     hover:shadow-lg hover:shadow-[#FF6F3C]/20
+                     transition-all duration-300
+                     relative overflow-hidden"
+          >
+            {isSubmitting ? 'Analyzing...' : 'Get AI Analysis'}
+            {isSubmitting && (
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 
+                           animate-[shimmer_2s_infinite]"
+              />
+            )}
+          </motion.button>
+        )}
+      </div>
     </div>
   );
 }
