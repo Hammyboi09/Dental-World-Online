@@ -11,21 +11,21 @@ import type { GalleryImage } from '../components/gallery/types';
 // Gallery sections with their images
 const galleryImages: Record<string, GalleryImage[]> = {
   clinic: [
-    { id: 1, src: "elements/gallery/Clinic Facilities/1.png", title: "" },
-    { id: 2, src: "elements/gallery/Clinic Facilities/2.png", title: "" },
-    { id: 3, src: "elements/gallery/Clinic Facilities/3.png", title: "" },
-    { id: 4, src: "elements/gallery/Clinic Facilities/4.png", title: "" },
-    { id: 5, src: "elements/gallery/Clinic Facilities/5.png", title: "" },
-    { id: 6, src: "elements/gallery/Clinic Facilities/6.png", title: "" },
-    { id: 7, src: "elements/gallery/Clinic Facilities/7.png", title: "" },
-    { id: 8, src: "elements/gallery/Clinic Facilities/8.png", title: "" },
-    { id: 9, src: "elements/gallery/Clinic Facilities/9.png", title: "" },
-    { id: 10, src: "elements/gallery/Clinic Facilities/10.png", title: "" },
-    { id: 11, src: "elements/gallery/Clinic Facilities/11.png", title: "" },
-    { id: 12, src: "elements/gallery/Clinic Facilities/12.png", title: "" },
-    { id: 13, src: "elements/gallery/Clinic Facilities/13.png", title: "" },
-    { id: 14, src: "elements/gallery/Clinic Facilities/14.png", title: "" },
-    { id: 15, src: "elements/gallery/Clinic Facilities/15.png", title: "" }
+    { id: 1, src: "elements/gallery/Clinic Facilities/1.png", title: "Rajouri Garden Clinic's Waiting Area" },
+    { id: 2, src: "elements/gallery/Clinic Facilities/2.png", title: "Rajouri Garden Clinic" },
+    { id: 3, src: "elements/gallery/Clinic Facilities/3.png", title: "Punjabi Bagh Clinic's Consultation Room" },
+    { id: 4, src: "elements/gallery/Clinic Facilities/4.png", title: "Rajouri Garden Clinic" },
+    { id: 5, src: "elements/gallery/Clinic Facilities/5.png", title: "Punjabi Bagh Clinic" },
+    { id: 6, src: "elements/gallery/Clinic Facilities/6.png", title: "Rajouri Garden Clinic" },
+    { id: 7, src: "elements/gallery/Clinic Facilities/7.png", title: "Rajouri Garden Clinic's Consultation Room" },
+    { id: 8, src: "elements/gallery/Clinic Facilities/8.png", title: "Punjabi Bagh Clinic" },
+    { id: 9, src: "elements/gallery/Clinic Facilities/9.png", title: "Punjabi Bagh Clinic" },
+    { id: 10, src: "elements/gallery/Clinic Facilities/10.png", title: "Punjabi Bagh Clinic Waiting Area" },
+    { id: 11, src: "elements/gallery/Clinic Facilities/11.png", title: "Rajouri Garden Clinic from Outside" },
+    { id: 12, src: "elements/gallery/Clinic Facilities/12.png", title: "Punjabi Bagh Clinic" },
+    { id: 13, src: "elements/gallery/Clinic Facilities/13.png", title: "Rajouri Garden Clinic" },
+    { id: 14, src: "elements/gallery/Clinic Facilities/14.png", title: "Rajouri Garden Clinic Operating Area" },
+    { id: 15, src: "elements/gallery/Clinic Facilities/15.png", title: "Rajouri Garden Clinic" }
   ],
   equipment: [
     { id: 16, src: "elements/gallery/Equiptments/1.png", title: "Modern Dental Chair" },
