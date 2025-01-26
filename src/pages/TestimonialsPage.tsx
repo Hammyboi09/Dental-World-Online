@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavBar } from '../components/navigation/NavBar';
 import { Footer } from '../components/footer/Footer';
-import { TestimonialSlider } from '../components/testimonials/TestimonialSlider';
 import { VideoGrid } from '../components/testimonials/VideoGrid';
 import { GradientBackground } from '../components/testimonials/GradientBackground';
 import { motion } from 'framer-motion';
@@ -46,35 +45,18 @@ export function TestimonialsPage() {
                            text-transparent bg-clip-text 
                            bg-gradient-to-r from-gray-800 to-gray-600
                            drop-shadow-[0_1px_1px_rgba(0,0,0,0.1)]">
-                Patient Stories
+                Real Success Stories 
               </h1>
               <p className="text-2xl font-medium
                            text-transparent bg-clip-text 
                            bg-gradient-to-r from-gray-800 to-gray-600
                            drop-shadow-[0_1px_1px_rgba(0,0,0,0.1)]">
-                Read what our patients have to say about their experience
+                Our Patients Share Their Journey
               </p>
             </div>
             
-            <TestimonialSlider />
-
-            {/* Video Testimonials Section */}
-            <div className="mt-32 mb-32">
-              <div className="text-center mb-16">
-                <h2 className="text-5xl font-bold mb-6
-                             text-transparent bg-clip-text 
-                             bg-gradient-to-r from-gray-800 to-gray-600
-                             drop-shadow-[0_1px_1px_rgba(0,0,0,0.1)]">
-                  Hear From Them
-                </h2>
-                <p className="text-2xl font-medium
-                             text-transparent bg-clip-text 
-                             bg-gradient-to-r from-gray-800 to-gray-600
-                             drop-shadow-[0_1px_1px_rgba(0,0,0,0.1)]">
-                  Real Stories, Real Smiles - Our Patients Share Their Journey
-                </p>
-              </div>
-              
+            {/* Video Grid */}
+            <div className="mb-32">
               <VideoGrid />
             </div>
 

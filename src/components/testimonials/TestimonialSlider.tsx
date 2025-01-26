@@ -1,20 +1,19 @@
 import React, { useState, useRef } from 'react';
 import { TestimonialCard } from './TestimonialCard';
-import { TestimonialModal } from './TestimonialModal';
 import { testimonialData } from './testimonialData';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import './styles/slider.css';
 
 export function TestimonialSlider() {
-  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [showSwipeInstruction, setShowSwipeInstruction] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   // Check if it's mobile/small screen
   React.useEffect(() => {
@@ -42,9 +41,8 @@ export function TestimonialSlider() {
     }
   }, [isMobile]);
 
-  const handleTestimonialClick = (testimonial) => {
-    setSelectedTestimonial(testimonial);
-    setIsModalOpen(true);
+  const handleTestimonialClick = () => {
+    navigate('/testimonials');
   };
 
   const handlePrevious = () => {
@@ -178,18 +176,12 @@ export function TestimonialSlider() {
             >
               <TestimonialCard
                 testimonial={testimonial}
-                onClick={() => handleTestimonialClick(testimonial)}
+                onClick={handleTestimonialClick}
               />
             </div>
           ))}
         </motion.div>
       </div>
-
-      <TestimonialModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        testimonial={selectedTestimonial}
-      />
     </div>
   );
 }

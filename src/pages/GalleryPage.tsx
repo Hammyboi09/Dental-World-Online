@@ -30,14 +30,7 @@ const galleryImages: Record<string, GalleryImage[]> = {
   equipment: [
     { id: 16, src: "elements/gallery/Equiptments/1.png", title: "Modern Dental Chair" },
     { id: 17, src: "elements/gallery/Equiptments/2.png", title: "Digital X-Ray System" },
-    { id: 18, src: "elements/gallery/Equiptments/3.png", title: "Dental Microscope" },
-    { id: 19, src: "Add-Relative-Path", title: "3D Scanner" },
-    { id: 20, src: "Add-Relative-Path", title: "Dental Laser System" },
-    { id: 21, src: "Add-Relative-Path", title: "Modern Dental Chair" },
-    { id: 22, src: "Add-Relative-Path", title: "Digital X-Ray System" },
-    { id: 23, src: "Add-Relative-Path", title: "Dental Microscope" },
-    { id: 24, src: "Add-Relative-Path", title: "3D Scanner" },
-    { id: 25, src: "Add-Relative-Path", title: "Dental Laser System" }
+    { id: 18, src: "elements/gallery/Equiptments/3.png", title: "Dental Microscope" }
   ],
   transformations: [
     { id: 26, src: "elements/gallery/Smile Transformations/composite-restoration.png", title: "Composite Restoration" },
