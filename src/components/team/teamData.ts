@@ -55,21 +55,21 @@ export const teamMembers = [
   },
   {
     id: 7,
-    name: "Dr. XYZ",
-    designation: "XYZ",
-    qualification: "BDS, MDS (ABC College)",
-    qualificationFull: "BDS (ABC College), MDS (ABC College)",
-    about: "Dr. XYZ is a dynamic and skilled XYZ serving as a consultant at QWE Hospital, QWE Superspeciality Hospital, and poas Hospital in New Delhi. He frequently attends national and international conferences to stay updated with the latest advancements in XYZ.",
-    image: "/elements/team/dr-XYZ.png"
+    name: "Dr. Aditi Narula",
+    designation: "Orthodontist and Consultant",
+    qualification: "M.D.S (Orthodontics), B.D.S",
+    qualificationFull: "Master of Dental Surgery (Orthodontics & Dentofacial Orthopaedics) from Sharad Pawar Dental College and Hospital, Wardha Maharashtra in April 2009 and Bachelor of Dental Surgery from College Of Dental Sciences , Davangere in 2004",
+    about: "Dr. Aditi Narula is an accomplished orthodontist with extensive expertise in orthodontics and dentofacial orthopaedics. She holds an M.D.S from Sharad Pawar Dental College and a B.D.S from the College of Dental Sciences, Davangere. With numerous accolades, including the IOS Best Research Award and the GB Shankwalar Memorial Dental Research Paper Award, she has contributed significantly to dental research and clinical practice. Dr. Narula has worked as a Research Officer at AIIMS, New Delhi, and is certified in Invisalign, with a special interest in aligners. She has treated over 500 aligner cases and is proficient in planning for in-house aligners. Additionally, she has conducted dental camps and awareness talks in schools and blogs as an expert for Baby Destination.",
+    image: "/elements/team/dr-aditi-narula.jpeg"
   },
   {
     id: 8,
-    name: 'Dr. XYZ',
-    designation: 'Senior Consultant',
-    qualification: 'BDS, MDS (Oral Surgery)',
-    qualificationFull: 'BDS, MDS in Oral and Maxillofacial Surgery with over 30 years of experience in dental practice and surgery.',
-    about: 'Dr. XYZ is a highly experienced oral surgeon who has been practicing dentistry for over three decades. After completing his BDS and MDS in Oral Surgery, he established the Vasant Vihar clinic and has been instrumental in developing advanced surgical protocols. His expertise in complex oral surgeries and dental implants has helped thousands of patients achieve better oral health.',
-    image: '/elements/team/dr-XYZ.png'
+    name: 'Dr. Tarushi Gosain',
+    designation: 'Associate Dentist',
+    qualification: 'B.D.S',
+    qualificationFull: 'Bachelor of Dental Surgery',
+    about: 'Dr. Tarushi Gosain is a skilled and compassionate dentist with over 3 years of experience in providing high-quality dental care. A graduate of ITS Dental College, she has honed her expertise by assisting in major and minor procedures such as root canals, crown cuttings, restorative treatments, and extractions. Known for her gentle approach and dedication to patient comfort, Dr. Tarushi ensures personalized care for every patient, making her a trusted and reliable dental professional.',
+    image: '/elements/team/dr-tarushi-gosain.jpeg'
 }
 
 
