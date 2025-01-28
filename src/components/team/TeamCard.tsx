@@ -14,27 +14,33 @@ export function TeamCard({ member, onClick }: TeamCardProps) {
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
       className="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg cursor-pointer
-                border border-white/20 hover:bg-white/20 transition-all duration-300
-                w-[350px] h-[480px] flex flex-col" // Fixed width to 350px
+      border border-white/20 hover:bg-white/20 transition-all duration-300
+      w-[350px] h-[630px] flex flex-col" // Increased height from 480px to 520px
     >
-      {/* Image Container - Fixed height */}
-      <div className="h-[280px] relative overflow-hidden">
-        <img 
-          src={member.image} 
+      {/* Image Container - Increased height */}
+      <div className="h-[400px] relative overflow-hidden"> {/* Increased from 280px to 300px */}
+        <img
+          src={member.image}
           alt={member.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
       </div>
-      
+
       {/* Content Container - Fixed padding and spacing */}
       <div className="flex-grow p-8 bg-white/5 backdrop-blur-sm flex flex-col justify-between">
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2 line-clamp-1">{member.name}</h3>
-          <p className="text-lg text-sky-700 mb-3 line-clamp-1">{member.designation}</p>
-          <p className="text-gray-700 text-sm line-clamp-2">{member.qualification}</p>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2 line-clamp-1">
+            {member.name}
+          </h3>
+          <p className="text-lg text-sky-700 mb-3 line-clamp-1">
+            {member.designation}
+          </p>
+          <p className="text-gray-700 text-sm line-clamp-3">
+            {member.qualification}
+          </p>
         </div>
-        
+
         {/* Updated View Profile Button */}
         <button
           className="mt-6 w-full py-3 px-6 rounded-xl

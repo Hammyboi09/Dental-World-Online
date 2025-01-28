@@ -22,7 +22,7 @@
 
 .team-track-item {
   flex: 0 0 350px; /* Fixed width to match card width */
-  height: 480px; /* Fixed height to match card height */
+  height: 520px; /* Updated height to match new card height */
 }
 
 /* Mobile-specific styles */
