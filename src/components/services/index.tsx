@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { ServiceSlide } from './components/ServiceSlide';
 import { serviceSlides } from './serviceData';
 import { ProgressBar } from './components/ProgressBar';
-import { SwipeIndicator } from './components/SwipeIndicator';
 import { ServiceModal } from './components/ServiceModal';
 import { useHorizontalScroll } from '../../hooks/useHorizontalScroll';
 
 export function Services() {
-  const { currentSlide, isAnimating, goToSlide, swipeProgress } =
+  const { currentSlide, isAnimating, goToSlide } =
     useHorizontalScroll(serviceSlides.length);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,9 +27,6 @@ export function Services() {
           />
         ))}
       </div>
-
-      {/* Swipe Progress Indicator */}
-      <SwipeIndicator progress={swipeProgress} threshold={60} />
 
       {/* Enhanced Progress Bar */}
       <ProgressBar
