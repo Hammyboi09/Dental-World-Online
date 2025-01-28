@@ -70,7 +70,16 @@ export const teamMembers = [
     qualificationFull: 'Bachelor of Dental Surgery',
     about: 'Dr. Tarushi Gosain is a skilled and compassionate dentist with over 3 years of experience in providing high-quality dental care. A graduate of ITS Dental College, she has honed her expertise by assisting in major and minor procedures such as root canals, crown cuttings, restorative treatments, and extractions. Known for her gentle approach and dedication to patient comfort, Dr. Tarushi ensures personalized care for every patient, making her a trusted and reliable dental professional.',
     image: '/elements/team/dr-tarushi-gosain.jpeg'
-}
+  },
+  {
+    id: 9,
+    name: 'Dr. Disha Sharma',
+    designation: 'Endodontist and Restorative Dentist',
+    qualification: 'M.D.S (Endodontics)',
+    qualificationFull: 'Master of Dental Surgery (Endodontics and Restorative Dentistry) from Manipal College of Dental Sciences, Manipal',
+    about: 'Dr. Disha Sharma is a dedicated and skilled endodontist specializing in restorative dentistry. A graduate of the prestigious Manipal College of Dental Sciences, Manipal, she has further honed her expertise with advanced training in micro-endodontics, aesthetic dentistry, and smile designing using composites and ceramic veneers. She holds an Associate Fellowship in Laser Dentistry from the World Clinical Laser Institute. Passionate about practicing ethical and patient-centered dentistry, Dr. Disha prioritizes her patients health and comfort while continuously updating her knowledge to deliver the best care. Grateful and always striving for excellence, she is committed to the art and science of dentistry',
+    image: '/elements/team/dr-disha-sharma.jpeg'
+  }
 
 
 ];
