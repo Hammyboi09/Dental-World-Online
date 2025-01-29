@@ -3,7 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 interface CertificateModalProps {
-  certificate: any;
+  certificate: {
+    name: string;
+    modalImage: string;
+    about: string;
+  } | null;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -33,66 +37,47 @@ export function CertificateModal({ certificate, isOpen, onClose }: CertificateMo
                      shadow-2xl overflow-hidden mx-auto z-50 border border-white/20"
           >
             {/* Close Button */}
-            <motion.button
+            <button
               onClick={onClose}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="absolute top-6 right-6 p-3 rounded-full 
-                       bg-black/20 hover:bg-black/30
-                       backdrop-blur-md border border-white/10
-                       transition-all duration-300 z-10
-                       group"
-              aria-label="Close modal"
+              className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 
+                       transition-colors z-10 backdrop-blur-md"
             >
-              <X className="w-5 h-5 text-white transition-transform duration-300
-                          group-hover:scale-110 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />
-            </motion.button>
+              <X className="w-6 h-6 text-white" />
+            </button>
 
-            <div className="flex flex-col md:flex-row">
-              {/* Image Container - Now using aspect-auto */}
-              <div className="w-full md:w-auto flex-shrink-0">
-                <div className="relative">
-                  <img
-                    src={certificate.image}
+            <div className="flex flex-col lg:flex-row">
+              {/* Image Container - Larger size for desktop */}
+              <div className="relative lg:w-3/5 flex-shrink-0">
+                <div className="relative pb-[100%] lg:pb-0 lg:h-[85vh]">
+                  <img 
+                    src={certificate.modalImage} 
                     alt={certificate.name}
-                    className="w-full h-full object-contain max-h-[80vh]"
-                    style={{ maxWidth: '100%' }}
+                    className="absolute inset-0 w-full h-full object-contain bg-black/60"
+                    onLoad={(e) => {
+                      // Adjust container based on image aspect ratio
+                      const img = e.target as HTMLImageElement;
+                      const aspectRatio = img.naturalWidth / img.naturalHeight;
+                      const container = img.parentElement;
+                      if (container) {
+                        if (aspectRatio > 1) {
+                          container.style.maxHeight = '85vh';
+                        } else {
+                          container.style.maxHeight = '85vh';
+                        }
+                      }
+                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
                 </div>
               </div>
 
-              {/* Content Section */}
-              <div className="p-8 flex-grow bg-black/40 backdrop-blur-md">
-                <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
-                  {certificate.name}
-                </h3>
-                <div className="prose">
-                  <p className="text-white/90 whitespace-pre-line drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+              {/* Content Container - Scrollable */}
+              <div className="lg:w-2/5 p-8 max-h-[50vh] lg:max-h-[85vh] overflow-y-auto custom-scrollbar">
+                <h3 className="text-2xl font-bold text-white mb-6">{certificate.name}</h3>
+                <div className="prose prose-invert">
+                  <p className="text-white/90 whitespace-pre-line leading-relaxed">
                     {certificate.about}
                   </p>
                 </div>
-
-                {/* Close Button for Mobile */}
-                <motion.button
-                  onClick={onClose}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="mt-8 w-full py-3 rounded-lg md:hidden
-                           bg-gradient-to-r from-[#FF6F3C] via-[#FFA833] to-[#FFC76D]
-                           text-white font-medium
-                           transform transition-all duration-300
-                           hover:shadow-lg hover:shadow-[#FF6F3C]/20
-                           relative overflow-hidden
-                           group"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 
-                               opacity-0 group-hover:opacity-100 
-                               -translate-x-full group-hover:translate-x-full 
-                               transition-all duration-700 ease-out" />
-                  <span className="relative z-10">Close</span>
-                </motion.button>
               </div>
             </div>
           </motion.div>

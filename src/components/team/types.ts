@@ -5,5 +5,7 @@ export interface TeamMember {
   qualification: string;
   qualificationFull: string;
   about: string;
-  image: string;
+  cardImage: string; // Image for card view
+  modalImage: string; // Image/video for modal view
+  isVideo?: boolean; // Flag to indicate if modalImage is a video
 }

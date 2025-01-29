@@ -14,20 +14,20 @@ export function TeamCard({ member, onClick }: TeamCardProps) {
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
       className="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg cursor-pointer
-      border border-white/20 hover:bg-white/20 transition-all duration-300
-      w-[350px] h-[630px] flex flex-col" // Increased height from 480px to 520px
+                border border-white/20 hover:bg-white/20 transition-all duration-300
+                w-[350px] h-[630px] flex flex-col"
     >
-      {/* Image Container - Increased height */}
-      <div className="h-[400px] relative overflow-hidden"> {/* Increased from 280px to 300px */}
+      {/* Image Container */}
+      <div className="h-[500px] relative overflow-hidden">
         <img
-          src={member.image}
+          src={member.cardImage}
           alt={member.name}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
       </div>
 
-      {/* Content Container - Fixed padding and spacing */}
+      {/* Content Container */}
       <div className="flex-grow p-8 bg-white/5 backdrop-blur-sm flex flex-col justify-between">
         <div>
           <h3 className="text-2xl font-bold text-gray-900 mb-2 line-clamp-1">
@@ -41,7 +41,7 @@ export function TeamCard({ member, onClick }: TeamCardProps) {
           </p>
         </div>
 
-        {/* Updated View Profile Button */}
+        {/* View Profile Button */}
         <button
           className="mt-6 w-full py-3 px-6 rounded-xl
                    bg-gradient-to-r from-gray-800 to-gray-600
