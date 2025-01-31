@@ -10,7 +10,7 @@ let isAudioInitialized = false;
 export function AudioPlayer() {
   const audioRef = useRef(globalAudio);
   const [isMuted, setIsMuted] = useState(false);
-  const [volume] = useState(0.05); // Default volume
+  const [volume] = useState(0.035); // Default volume
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
