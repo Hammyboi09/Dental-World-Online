@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavBar } from '../components/navigation/NavBar';
 import { Footer } from '../components/footer/Footer';
 import { TreatmentSlider } from '../components/costs/TreatmentSlider';
@@ -9,6 +9,36 @@ import '../styles/cost-gradient.css';
 
 export function CostPage() {
   const navigate = useNavigate();
+
+  // Add mouse movement tracking
+  useEffect(() => {
+    const interBubble = document.querySelector('.interactive') as HTMLElement;
+    let curX = 0;
+    let curY = 0;
+    let tgX = 0;
+    let tgY = 0;
+
+    function move() {
+      curX += (tgX - curX) / 20;
+      curY += (tgY - curY) / 20;
+      if (interBubble) {
+        interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+      }
+      requestAnimationFrame(move);
+    }
+
+    function handleMouseMove(event: MouseEvent) {
+      tgX = event.clientX;
+      tgY = event.clientY;
+    }
+
+    window.addEventListener('mousemove', handleMouseMove);
+    move();
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   const navigationButtons = [
     {

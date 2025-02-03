@@ -15,7 +15,7 @@ const galleryImages: Record<string, GalleryImage[]> = {
     { id: 2, src: "elements/gallery/Clinic Facilities/2.png", title: "Rajouri Garden Clinic" },
     { id: 3, src: "elements/gallery/Clinic Facilities/3.png", title: "Punjabi Bagh Clinic's Consultation Room" },
     { id: 4, src: "elements/gallery/Clinic Facilities/4.png", title: "Rajouri Garden Clinic" },
-    { id: 5, src: "elements/gallery/Clinic Facilities/5.png", title: "Punjabi Bagh Clinic" },
+   // { id: 5, src: "elements/gallery/Clinic Facilities/5.png", title: "Punjabi Bagh Clinic" },
     { id: 6, src: "elements/gallery/Clinic Facilities/6.png", title: "Rajouri Garden Clinic" },
     { id: 7, src: "elements/gallery/Clinic Facilities/7.png", title: "Rajouri Garden Clinic's Consultation Room" },
     { id: 8, src: "elements/gallery/Clinic Facilities/8.png", title: "Punjabi Bagh Clinic" },
@@ -29,7 +29,7 @@ const galleryImages: Record<string, GalleryImage[]> = {
   ],
   equipment: [
     { id: 16, src: "elements/gallery/Equiptments/1.png", title: "Modern Dental Chair" },
-    { id: 17, src: "elements/gallery/Equiptments/2.png", title: "Digital X-Ray System" },
+   // { id: 17, src: "elements/gallery/Equiptments/2.png", title: "Digital X-Ray System" },
     { id: 18, src: "elements/gallery/Equiptments/3.png", title: "Dental Microscope" }
   ],
   transformations: [
@@ -62,7 +62,7 @@ const galleryImages: Record<string, GalleryImage[]> = {
     { id: 50, src: "elements/gallery/Team Pics/8.png", title: "" },
     { id: 51, src: "elements/gallery/Team Pics/9.png", title: "" },
     { id: 52, src: "elements/gallery/Team Pics/10.png", title: "" },
-    { id: 53, src: "elements/gallery/Team Pics/11.png", title: "" },
+   // { id: 53, src: "elements/gallery/Team Pics/11.png", title: "" },
     { id: 54, src: "elements/gallery/Team Pics/12.png", title: "" }
   ]
 };
