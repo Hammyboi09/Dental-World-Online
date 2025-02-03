@@ -13,12 +13,8 @@ const clinicButtons = [
     link: "https://maps.app.goo.gl/TyW9mHBwAm5N9Kkp9"
   },
   {
-    title: "Practo Rajouri Garden",
-    link: "https://www.practo.com/delhi/clinic/dental-world-rajouri-garden-1"
-  },
-  {
-    title: "Practo Punjabi Bagh",
-    link: "https://www.practo.com/delhi/clinic/dental-world-the-specialists-clinic-punjabi-bagh"
+    title: "Book Appointment",
+    link: "https://forms.gle/U2nWADT9oUAzjo9U9"
   }
 ] as const;
 
