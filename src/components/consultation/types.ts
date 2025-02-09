@@ -3,7 +3,6 @@ export interface FormData {
   dentalHistory: string[];
   oralHygiene: string;
   lifestyleFactors: string[];
-  images: File[];
 }
 
 export interface AnalysisResult {

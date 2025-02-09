@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { PhotoUpload } from './PhotoUpload';
 import { formOptions } from './formOptions';
 import type { FormData, AnalysisResult } from './types';
 import { AnalysisResults } from './AnalysisResults';
@@ -10,7 +9,6 @@ const initialFormData: FormData = {
   dentalHistory: [],
   oralHygiene: '',
   lifestyleFactors: [],
-  images: [],
 };
 
 const steps = [
@@ -42,13 +40,6 @@ const steps = [
     titleClass: 'text-center',
     descriptionClass: 'text-center w-44 mx-auto',
   },
-  {
-    id: 5,
-    title: 'Photos',
-    description: 'Upload dental photos',
-    titleClass: 'text-center',
-    descriptionClass: 'text-center w-32 mx-auto',
-  },
 ];
 
 export function ConsultationForm() {
@@ -56,7 +47,6 @@ export function ConsultationForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
-  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
   const handleOptionToggle = (field: keyof FormData, option: string) => {
     setFormData((prev) => ({
@@ -76,36 +66,6 @@ export function ConsultationForm() {
     }));
   };
 
-  const handleImageUpload = (files: FileList) => {
-    const newImages = Array.from(files);
-    const totalImages = formData.images.length + newImages.length;
-
-    if (totalImages > 3) {
-      alert('You can only upload a maximum of 3 photos.');
-      return;
-    }
-
-    setFormData((prev) => ({
-      ...prev,
-      images: [...prev.images, ...newImages],
-    }));
-
-    // Create preview URLs for the new images
-    const newPreviewUrls = newImages.map((file) => URL.createObjectURL(file));
-    setPreviewUrls((prev) => [...prev, ...newPreviewUrls]);
-  };
-
-  const handleImageRemove = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      images: prev.images.filter((_, i) => i !== index),
-    }));
-
-    // Revoke the URL to prevent memory leaks
-    URL.revokeObjectURL(previewUrls[index]);
-    setPreviewUrls((prev) => prev.filter((_, i) => i !== index));
-  };
-
   const isStepComplete = () => {
     switch (currentStep) {
       case 1:
@@ -116,8 +76,6 @@ export function ConsultationForm() {
         return formData.oralHygiene !== '';
       case 4:
         return formData.lifestyleFactors.length > 0;
-      case 5:
-        return formData.images.length === 3; // Require exactly 3 photos
       default:
         return false;
     }
@@ -135,35 +93,152 @@ export function ConsultationForm() {
     }
   };
 
-  const handleSubmit = async () => {
-    if (formData.images.length !== 3) {
-      alert('Please provide exactly 3 photos for accurate analysis.');
-      return;
+  const analyzeFormData = (data: FormData): AnalysisResult => {
+    // Base scores
+    let toothCondition = 85;
+    let gumHealth = 85;
+    let alignment = 85;
+    let hygieneScore = 85;
+    const concerns: string[] = [];
+    const recommendations: string[] = [];
+
+    // Analyze Primary Concerns
+    data.primaryConcerns.forEach(concern => {
+      switch (concern) {
+        case 'Tooth Pain':
+          toothCondition -= 15;
+          concerns.push('Active tooth pain indicates possible decay or infection');
+          recommendations.push('Immediate dental examination recommended for pain assessment');
+          break;
+        case 'Bleeding Gums':
+          gumHealth -= 20;
+          concerns.push('Bleeding gums suggest active gum inflammation');
+          recommendations.push('Professional cleaning and gum assessment needed');
+          break;
+        case 'Bad Breath':
+          hygieneScore -= 10;
+          gumHealth -= 5;
+          concerns.push('Persistent bad breath may indicate oral bacteria buildup');
+          recommendations.push('Enhanced oral hygiene routine with tongue cleaning');
+          break;
+        case 'Teeth Sensitivity':
+          toothCondition -= 10;
+          concerns.push('Tooth sensitivity may indicate enamel wear or gum recession');
+          recommendations.push('Use of sensitivity toothpaste and fluoride treatments');
+          break;
+        case 'Crooked Teeth':
+          alignment -= 25;
+          concerns.push('Misaligned teeth can affect bite and oral health');
+          recommendations.push('Orthodontic consultation for alignment options');
+          break;
+        case 'Discolored Teeth':
+          hygieneScore -= 5;
+          recommendations.push('Professional teeth whitening or cosmetic consultation');
+          break;
+        case 'Missing Teeth':
+          toothCondition -= 20;
+          alignment -= 15;
+          concerns.push('Missing teeth can affect bite and remaining teeth alignment');
+          recommendations.push('Dental implant or bridge consultation recommended');
+          break;
+        case 'Jaw Pain':
+          alignment -= 10;
+          concerns.push('Jaw pain may indicate TMJ issues or bite problems');
+          recommendations.push('TMJ assessment and bite evaluation needed');
+          break;
+      }
+    });
+
+    // Analyze Dental History
+    data.dentalHistory.forEach(history => {
+      if (history === 'Previous Root Canal') {
+        toothCondition -= 5;
+        recommendations.push('Regular monitoring of treated teeth');
+      }
+      if (history === 'Gum Disease Treatment') {
+        gumHealth -= 10;
+        recommendations.push('Continued periodontal maintenance recommended');
+      }
+      if (history === 'Regular Cleanings') {
+        hygieneScore += 10;
+        gumHealth += 5;
+      }
+    });
+
+    // Analyze Oral Hygiene
+    switch (data.oralHygiene) {
+      case 'After Every Meal':
+        hygieneScore = 95;
+        break;
+      case 'Twice Daily':
+        hygieneScore = 85;
+        break;
+      case 'Once Daily':
+        hygieneScore = 70;
+        concerns.push('Once daily brushing may be insufficient for optimal oral health');
+        recommendations.push('Increase brushing frequency to twice daily');
+        break;
+      case 'Irregular':
+        hygieneScore = 50;
+        concerns.push('Irregular brushing significantly increases risk of dental problems');
+        recommendations.push('Establish consistent twice-daily brushing routine');
+        break;
     }
 
+    // Analyze Lifestyle Factors
+    data.lifestyleFactors.forEach(factor => {
+      switch (factor) {
+        case 'Smoking':
+          gumHealth -= 20;
+          toothCondition -= 10;
+          concerns.push('Smoking significantly increases risk of gum disease and oral cancer');
+          recommendations.push('Smoking cessation advised for oral health improvement');
+          break;
+        case 'Frequent Coffee/Tea':
+          hygieneScore -= 5;
+          recommendations.push('Consider reducing staining beverages or rinsing after consumption');
+          break;
+        case 'Sugary Foods':
+          toothCondition -= 15;
+          concerns.push('High sugar intake increases cavity risk');
+          recommendations.push('Reduce sugary food consumption and rinse after sweets');
+          break;
+        case 'Teeth Grinding':
+          toothCondition -= 10;
+          alignment -= 5;
+          concerns.push('Teeth grinding can cause wear and jaw problems');
+          recommendations.push('Night guard recommended for grinding protection');
+          break;
+        case 'Contact Sports':
+          recommendations.push('Use of sports mouthguard during activities');
+          break;
+        case 'Acidic Foods':
+          toothCondition -= 5;
+          recommendations.push('Limit acidic foods and wait 30 minutes before brushing');
+          break;
+      }
+    });
+
+    // Ensure scores stay within 0-100 range
+    const normalizeScore = (score: number) => Math.max(0, Math.min(100, score));
+
+    return {
+      toothCondition: normalizeScore(toothCondition),
+      gumHealth: normalizeScore(gumHealth),
+      alignment: normalizeScore(alignment),
+      hygieneScore: normalizeScore(hygieneScore),
+      concerns: concerns.filter((v, i, a) => a.indexOf(v) === i), // Remove duplicates
+      recommendations: recommendations.filter((v, i, a) => a.indexOf(v) === i), // Remove duplicates
+    };
+  };
+
+  const handleSubmit = async () => {
     setIsSubmitting(true);
-
-    // Simulate API call with a delay
+    
+    // Simulate API delay
     setTimeout(() => {
-      const mockResult: AnalysisResult = {
-        toothCondition: Math.floor(Math.random() * 30) + 70,
-        gumHealth: Math.floor(Math.random() * 30) + 70,
-        alignment: Math.floor(Math.random() * 30) + 70,
-        hygieneScore: Math.floor(Math.random() * 30) + 70,
-        concerns: [
-          'Minor plaque buildup detected',
-          'Slight gum inflammation observed',
-          'Early signs of misalignment noted',
-        ],
-        recommendations: [
-          'Schedule professional cleaning',
-          'Consider orthodontic consultation',
-          'Improve flossing technique',
-          'Use fluoride toothpaste',
-        ],
-      };
-
-      setAnalysisResult(mockResult);
+      const result = analyzeFormData(formData);
+      setAnalysisResult(result);
       setIsSubmitting(false);
     }, 2000);
   };
@@ -173,24 +248,15 @@ export function ConsultationForm() {
     setFormData(initialFormData);
     setIsSubmitting(false);
     setAnalysisResult(null);
-    // Cleanup preview URLs
-    previewUrls.forEach((url) => URL.revokeObjectURL(url));
-    setPreviewUrls([]);
   };
 
   if (analysisResult) {
-    return (
-      <AnalysisResults
-        result={analysisResult}
-        images={previewUrls}
-        onStartAgain={resetForm}
-      />
-    );
+    return <AnalysisResults result={analysisResult} onStartAgain={resetForm} />;
   }
 
   return (
     <div className="max-w-3xl mx-auto">
-      {/* Progress Steps - Mobile Optimized */}
+      {/* Progress Steps */}
       <div className="mb-12 relative">
         <div className="absolute top-3 sm:top-5 left-0 right-0 h-0.5 bg-black-800">
           <div
@@ -421,14 +487,6 @@ export function ConsultationForm() {
             </div>
           </div>
         )}
-
-        {currentStep === 5 && (
-          <PhotoUpload
-            previewUrls={previewUrls}
-            onImageUpload={handleImageUpload}
-            onImageRemove={handleImageRemove}
-          />
-        )}
       </div>
 
       {/* Navigation Buttons */}
@@ -462,7 +520,7 @@ export function ConsultationForm() {
           </motion.button>
         ) : (
           <motion.button
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
             whileTap={{ scale: 0.98 }}
             onClick={handleSubmit}
             disabled={!isStepComplete() || isSubmitting}
@@ -472,7 +530,8 @@ export function ConsultationForm() {
                      disabled:opacity-50 disabled:cursor-not-allowed
                      hover:shadow-lg hover:shadow-[#FF6F3C]/20
                      transition-all duration-300
-                     relative overflow-hidden"
+                     relative overflow-hidden
+                     hover:bg-white/10 backdrop-blur-sm"
           >
             {isSubmitting ? 'Analyzing...' : 'Get AI Analysis'}
             {isSubmitting && (
