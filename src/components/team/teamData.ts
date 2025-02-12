@@ -32,7 +32,7 @@ export const teamMembers = [
     modalImage: '/elements/team/modal/dr-tavleen-kaur.png',
     isVideo: false
   },
-  {
+  /*{
     id: 4,
     name: 'Dr. Akshay Sur',
     designation: 'Practice Principle',
@@ -53,7 +53,7 @@ export const teamMembers = [
     cardImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80',
     modalImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80',
     isVideo: false
-  },
+  },*/
   {
     id: 6,
     name: 'Dr. Raman Kamboj',

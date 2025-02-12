@@ -1,86 +1,109 @@
-export const partners = [
+import type { Partner } from './types';
+
+export const partners: Partner[] = [
   {
     id: 1,
-    name: 'DentalTech Solutions',
-    logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60',
-    description:
-      'A leading provider of advanced dental imaging and diagnostic technology solutions.',
-    problem:
-      'Traditional dental imaging systems were slow and produced lower quality images, making accurate diagnosis challenging.',
-    solution:
-      'Implemented state-of-the-art 3D imaging systems and AI-powered diagnostic tools, improving accuracy and reducing diagnosis time by 60%.',
-    website: 'https://example.com/dentaltech',
+    name: '3M',
+    logo: 'elements/partners/3m-logo.png',
+    description: 'A leading provider of advanced dental imaging and diagnostic technology solutions. Traditional dental imaging systems were slow and produced lower quality images, making accurate diagnosis challenging. Implemented state-of-the-art 3D imaging systems and AI-powered diagnostic tools, improving accuracy and reducing diagnosis time by 60%.',
+    website: 'https://www.3mindia.in/3M/en_IN/company-in/',
   },
   {
     id: 2,
-    name: 'OrthoInnovate',
-    logo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&auto=format&fit=crop&q=60',
-    description:
-      'Specialists in orthodontic equipment and innovative alignment solutions.',
-    problem:
-      'Traditional braces were uncomfortable and visually unappealing, leading to patient hesitation.',
-    solution:
-      'Introduced cutting-edge clear aligner technology and digital treatment planning for more comfortable and aesthetic orthodontic care.',
-    website: 'https://example.com/orthoinnovate',
+    name: 'AlphaBio Implantology',
+    logo: 'elements/partners/alphabio-logo.png',
+    description: 'Specialists in orthodontic equipment and innovative alignment solutions. Traditional braces were uncomfortable and visually unappealing, leading to patient hesitation. Introduced cutting-edge clear aligner technology and digital treatment planning for more comfortable and aesthetic orthodontic care.',
+    website: 'https://www.alpha-bio.net/en-int',
   },
   {
     id: 3,
-    name: 'ImplantPro Systems',
-    logo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=60',
-    description:
-      'Manufacturers of premium dental implant systems and surgical tools.',
-    problem:
-      'Complex implant procedures required lengthy healing times and multiple visits.',
-    solution:
-      'Developed advanced implant systems with improved osseointegration, reducing healing time and enabling same-day procedures.',
-    website: 'https://example.com/implantpro',
+    name: 'Bio Horizons',
+    logo: 'elements/partners/bio-horizons-logo.png',
+    description: 'Manufacturers of premium dental implant systems and surgical tools. Complex implant procedures required lengthy healing times and multiple visits. Developed advanced implant systems with improved osseointegration, reducing healing time and enabling same-day procedures.',
+    website: 'https://www.biohorizons.com/',
   },
   {
     id: 4,
-    name: 'SterileSmart',
-    logo: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=60',
-    description:
-      'Experts in dental sterilization and infection control solutions.',
-    problem:
-      'Traditional sterilization methods were time-consuming and resource-intensive.',
-    solution:
-      'Implemented automated sterilization systems and tracking software, ensuring 100% compliance and efficiency.',
-    website: 'https://example.com/sterilesmart',
+    name: 'CareStream Dental',
+    logo: 'elements/partners/carestream-logo.png',
+    description: 'Experts in dental sterilization and infection control solutions. Traditional sterilization methods were time-consuming and resource-intensive. Implemented automated sterilization systems and tracking software, ensuring 100% compliance and efficiency.',
+    website: 'https://www.carestreamdental.com/en-in/',
   },
   {
     id: 5,
-    name: 'DentalSoft',
-    logo: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60',
-    description:
-      'Providers of comprehensive dental practice management software.',
-    problem:
-      'Manual scheduling and patient management led to inefficiencies and errors.',
-    solution:
-      'Deployed integrated practice management system with automated scheduling, billing, and patient communication.',
-    website: 'https://example.com/dentalsoft',
+    name: 'Cerec Dental',
+    logo: 'elements/partners/cerec-one-visit-dentisty.png',
+    description: 'Providers of comprehensive dental practice management software. Manual scheduling and patient management led to inefficiencies and errors. Deployed integrated practice management system with automated scheduling, billing, and patient communication.',
+    website: ' ',
   },
   {
     id: 6,
-    name: 'BioMaterials Plus',
-    logo: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&auto=format&fit=crop&q=60',
-    description:
-      'Suppliers of advanced dental materials and biocompatible solutions.',
-    problem:
-      'Limited durability and aesthetics of traditional dental materials.',
-    solution:
-      'Introduced next-generation composite materials and ceramics for longer-lasting, more natural-looking restorations.',
-    website: 'https://example.com/biomaterials',
+    name: 'Coltene Whaldent',
+    logo: 'elements/partners/coltene-whaledent-logo.png',
+    description: 'Suppliers of advanced dental materials and biocompatible solutions. Limited durability and aesthetics of traditional dental materials. Introduced next-generation composite materials and ceramics for longer-lasting, more natural-looking restorations.',
+    website: 'https://www.coltene.com/',
   },
   {
     id: 7,
-    name: 'EduDent Academy',
-    logo: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=60',
-    description:
-      'Leading provider of continuing dental education and training.',
-    problem:
-      'Keeping staff updated with latest techniques and technologies was challenging.',
-    solution:
-      'Provided comprehensive online and hands-on training programs, ensuring our team stays at the forefront of dental innovation.',
-    website: 'https://example.com/edudent',
+    name: 'Dentsply Sirona',
+    logo: 'elements/partners/dentsply-sirona.png',
+    description: 'Leading provider of continuing dental education and training. Keeping staff updated with latest techniques and technologies was challenging. Provided comprehensive online and hands-on training programs, ensuring our team stays at the forefront of dental innovation.',
+    website: 'https://www.dentsplysirona.com/en-us',
   },
-];
+  {
+    id: 8,
+    name: 'DSD Design Dental Smile',
+    logo: 'elements/partners/dsd-logo.png',
+    description: 'Advanced dental imaging and visualization solutions. Traditional imaging methods lacked precision and detail. Introduced 4K imaging systems with AI-enhanced visualization for better diagnosis.',
+    website: 'https://digitalsmiledesign.com/',
+  },
+  {
+    id: 9,
+    name: 'Durr Dental',
+    logo: 'elements/partners/durr-dental-logo.png',
+    description: 'Innovative oral hygiene product manufacturer. Standard oral care products had limited effectiveness. Developed smart toothbrushes and IoT-connected dental care products.',
+    website: 'https://www.duerrdental.com/en/IN/',
+  },
+  {
+    id: 10,
+    name: 'IPS e.max',
+    logo: 'elements/partners/IPS-e.max-logo.png',
+    description: 'Dental laboratory equipment and supplies. Traditional lab processes were time-consuming. Implemented digital workflows and 3D printing solutions.',
+    website: 'https://www.ivoclar.com/en_in/products/digital-processes/ips-e.max-cad',
+  },
+  {
+    id: 11,
+    name: 'Lava Esthetic',
+    logo: 'elements/partners/lava-esthetic.png',
+    description: 'Comprehensive dental care solutions provider. Fragmented dental care delivery systems. Created integrated care platforms for seamless patient experience.',
+    website: ' ',
+  },
+  {
+    id: 12,
+    name: 'Nobel Biocare',
+    logo: 'elements/partners/nobel-biocare-logo.png',
+    description: 'AI-powered dental diagnostics and planning. Manual treatment planning inefficiencies. Developed AI algorithms for automated treatment planning',
+    website: 'https://www.nobelbiocare.com/en-in',
+  },
+  {
+    id: 13,
+    name: 'OSSTEM Implant',
+    logo: 'elements/partners/osstem-logo.png',
+    description: 'Precision dental instruments manufacturer. Standard instruments lacked precision. Created ergonomic, high-precision dental instruments.',
+    website: 'https://en.osstem.com/',
+  },
+  {
+    id: 14,
+    name: 'Straumann',
+    logo: 'elements/partners/Straumann-logo.png',
+    description: 'Cloud-based dental practice solutions. Limited access to patient data across locations. Developed secure cloud platform for dental practices.',
+    website: 'https://www.straumann.com/en/dental-professionals.html',
+  },
+  {
+    id: 15,
+    name: 'Ultradent',
+    logo: 'elements/partners/ultradent-logo.png',
+    description: 'Dental biomaterials research and development. Limited biocompatibility of materials. Pioneered new biocompatible dental materials.',
+    website: 'https://www.ultradent.com/',
+  },
+] as const;
