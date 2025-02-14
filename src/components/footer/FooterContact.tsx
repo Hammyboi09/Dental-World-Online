@@ -10,10 +10,7 @@ export function FooterContact() {
         <div className="flex items-start space-x-3">
           <Phone className="w-5 h-5 text-[#FF6F3C] flex-shrink-0 mt-1" />
           <div>
-            <p className="text-gray-400">
-              <a href="tel:+911145083723" className="hover:text-white transition-colors">+91-11-45083723</a><br />
-              <a href="tel:+911125193887" className="hover:text-white transition-colors">+91-11-25193887</a><br />
-              <a href="tel:+919650044321" className="hover:text-white transition-colors">+91-9650044321</a>
+            <p className="text-gray-400"> <a href="tel:+919650044321" className="hover:text-white transition-colors">+91 9650044321</a>
             </p>
           </div>
         </div>

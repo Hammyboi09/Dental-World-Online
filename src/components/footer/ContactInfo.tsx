@@ -8,10 +8,7 @@ export function ContactInfo() {
       <div className="space-y-3">
         <div className="flex items-start text-gray-400 hover:text-white transition-colors">
           <Phone className="h-5 w-5 mr-2 mt-1 flex-shrink-0" />
-          <div>
-            <a href="tel:+911145083723">+91-11-45083723</a><br />
-            <a href="tel:+911125193887">+91-11-25193887</a><br />
-            <a href="tel:+919650044321">+91-9650044321</a>
+          <div> <a href="tel:+919650044321">+91 9650044321</a>
           </div>
         </div>
         

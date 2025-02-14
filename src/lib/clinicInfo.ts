@@ -13,9 +13,7 @@ Would you like to know more about our services or meet our team? Try /services o
 
   getContactInfo: () => `
 📞 Phone Numbers:
-- +91-11-45083723
-- +91-11-25193887
-- +91-9650044321
+- +91 9650044321
 
 📧 Email: dentalworldonline@gmail.com
 
@@ -54,11 +52,9 @@ Need to schedule an appointment? Use /book command.
 To schedule an appointment, you can:
 
 1. Call us at:
-   - +91-11-45083723
-   - +91-11-25193887
-   - +91-9650044321
+   - +91 9650044321
 
-2. WhatsApp us at: +91-9650044321
+2. WhatsApp us at: +91 9650044321
 
 3. Email us at: dentalworldonline@gmail.com
 

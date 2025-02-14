@@ -12,10 +12,7 @@ export function ContactInfo() {
           <Phone className="h-5 w-5 mr-2 mt-1 flex-shrink-0 text-[#FF6F3C]" />
           <div>
             <h4 className="text-white font-medium mb-1">Phone Numbers</h4>
-            <div className="text-white">
-              <a href="tel:+911145083723" className="text-white">+91-11-45083723</a><br />
-              <a href="tel:+911125193887" className="text-white">+91-11-25193887</a><br />
-              <a href="tel:+919650044321" className="text-white">+91-9650044321</a>
+            <div className="text-white"> <a href="tel:+919650044321" className="text-white">+91 9650044321</a>
             </div>
           </div>
         </div>
